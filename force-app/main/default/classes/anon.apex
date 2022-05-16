@@ -1,1 +1,0 @@
-System.debug(DomainProcessBinding__mdt.RelatedDomainBindingSObject__c.getDescribe());
