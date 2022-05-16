@@ -1,0 +1,20 @@
+<template>
+    <b>{selectedSObjectDeveloperName}</b>
+    <section class={calculatedPopoverClasses} role="dialog">
+      <!--
+        TODO: Finish implementing SLDS Popover
+        - They should be implemented as a keyboard focus trap
+        - When triggered, user focus should be placed on the first focusable element that isn't the close button. If the close button is the only focusable element, focus should be placed there
+        - Pressing the Escape the key as well as clicking the close button should close the Popover
+        - User focus should be placed back on the triggering button when the popover is closed
+      -->
+        <div class="slds-popover__body">
+            <div class="slds-media">
+              <div class="slds-media__body">
+                <lightning-combobox variant="label-hidden" placeholder="Select Object" value={selectedSObjectDeveloperName} options={options} onchange={handleObjectChange}></lightning-combobox>
+              </div>
+            </div>
+          </div>
+    </section>
+    <lightning-button-icon variant="bare" icon-name="utility:down" onclick={displayToolbar}></lightning-button-icon>
+</template>

@@ -1,0 +1,17 @@
+<template>
+    <!-- Make border display more dynamic; currently tops and bottoms overlap. -->
+    <p class="slds-grid slds-gutters_xxx-small slds-align_absolute-center slds-border_bottom slds-border_top slds-p-vertical_small slds-p-horizontal_medium">
+        <span class="slds-col slds-grow-none"><lightning-icon icon-name={iconName}></lightning-icon></span>
+        <span class="slds-col slds-grow-none"><a href="#" onclick={navigateToRecord}>{record.MasterLabel}</a></span>
+        <span class="slds-col slds-grow-none" role="separator">•</span>
+        <!-- Find nicer way to display the Order -->
+        <span class="slds-col slds-grow-none">Order:&nbsp;
+            <lightning-formatted-number 
+                value={record.OrderOfExecution__c} 
+                minimum-fraction-digits=2 
+                minimum-integer-digits=2>
+            </lightning-formatted-number>
+        </span>
+        <span class={activeBadgeCalculatedClass}>{activeBadgeLabel}</span>
+    </p>
+</template>

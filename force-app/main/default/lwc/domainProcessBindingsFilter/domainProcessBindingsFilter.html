@@ -1,0 +1,20 @@
+<template>
+    <div class="slds-page-header">
+        <span>
+            <lightning-icon icon-name="standard:opportunity" class="slds-m-right_small"></lightning-icon>
+            When a(n)&nbsp;
+            <c-entity-definition-selector onobjectchanged={handleObjectChanged}></c-entity-definition-selector>
+            &nbsp;record&nbsp;is&nbsp;<b>{selectedActionLabel}</b>
+            <lightning-button-menu onselect={handleMenuSelect} variant="bare">
+                <template for:each={possibleActions} for:item="action">
+                    <lightning-menu-item 
+                        id={action.value}
+                        label={action.label}
+                        value={action.value}
+                        key={action.label}>
+                    </lightning-menu-item>
+                </template>
+            </lightning-button-menu>
+        </span>
+    </div>
+</template>

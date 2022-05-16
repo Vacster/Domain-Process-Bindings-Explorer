@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-grid slds-grid_align-center">
+        <lightning-icon class="slds-col" icon-name="utility:arrowdown"></lightning-icon>
+    </div>
+    <lightning-card>
+        <div slot=title>
+            <span>
+                <h4>{calculatedTitle}</h4>
+                <p class="slds-grid slds-gutters_xxx-small slds-text-color_weak slds-text-body_regular" style="font-weight: var(--lwc-fontWeightLight)">
+                    <span class="slds-col slds-grow-none">{domainProcessBindingsListLength} Item(s)</span>
+                    <span class="slds-col slds-grow-none" role="separator">•</span>
+                    <span class="slds-col slds-grow-none">Sorted By Order of Execution</span>
+                </p>
+            </span>
+        </div>
+        <template if:true={domainProcessBindingsListLength}>
+            <template for:each={domainProcessBindingsList} for:item="binding">
+                <c-domain-process-binding-list-item key={binding.Id} record={binding}></c-domain-process-binding-list-item>
+            </template>
+        </template>
+        <template if:false={domainProcessBindingsListLength}>
+            <p class="slds-p-horizontal_small">No items to display</p>
+        </template>
+    </lightning-card>
+</template>
