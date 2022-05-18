@@ -4,11 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { api, LightningElement, wire } from 'lwc';
-import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerController.getEntityDefinitions';
+import { api, LightningElement, wire } from 'lwc'
+import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerController.getEntityDefinitions'
 
 export default class EntityDefinitionSelector extends LightningElement {
-
     _entityDefinitions = []
     _selectedSObjectDeveloperName = ''
     _displayPopover = false
@@ -16,7 +15,9 @@ export default class EntityDefinitionSelector extends LightningElement {
     @wire(getEntityDefinitions)
     entityDefinitionsWire(value) {
         if (value.data) {
-            this._entityDefinitions = [...value.data].sort((a, b) => { return a.Label.localeCompare(b.Label)})
+            this._entityDefinitions = [...value.data].sort((a, b) => {
+                return a.Label.localeCompare(b.Label)
+            })
             if (!this._selectedSObjectDeveloperName) {
                 this._selectedSObjectDeveloperName = this._entityDefinitions[0].DeveloperName
             }
@@ -27,13 +28,10 @@ export default class EntityDefinitionSelector extends LightningElement {
         this._selectedSObjectDeveloperName = event.detail.value
         this._displayPopover = false
         this.dispatchEvent(
-            new CustomEvent(
-                'objectchanged', 
-                {
-                    detail: this._selectedSObjectDeveloperName
-                }
-            )
-        );
+            new CustomEvent('objectchanged', {
+                detail: this._selectedSObjectDeveloperName,
+            })
+        )
     }
 
     displayToolbar() {
@@ -41,8 +39,8 @@ export default class EntityDefinitionSelector extends LightningElement {
     }
 
     get options() {
-        return this._entityDefinitions.map(entityDefinition => {
-            return {value: entityDefinition.DeveloperName, label: entityDefinition.Label}
+        return this._entityDefinitions.map((entityDefinition) => {
+            return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
         })
     }
 
@@ -57,5 +55,4 @@ export default class EntityDefinitionSelector extends LightningElement {
     @api get selectedSObjectDeveloperName() {
         return this._selectedSObjectDeveloperName
     }
-
 }

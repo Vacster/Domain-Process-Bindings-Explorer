@@ -8,12 +8,11 @@ import { api, LightningElement } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 
 const ICON_NAME_BY_BINDING_TYPE = {
-    'Action': 'standard:invocable_action',
-    'Criteria': 'standard:activations',
+    Action: 'standard:invocable_action',
+    Criteria: 'standard:activations',
 }
 
 export default class DomainProcessBindingListItem extends NavigationMixin(LightningElement) {
-
     @api record
 
     async navigateToRecord(event) {
@@ -25,10 +24,10 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
             attributes: {
                 recordId: this.record.Id,
                 objectApiName: 'DomainProcessBinding__mdt',
-                actionName: 'view'
-            }
-        });
-        window.open(url, "_blank");
+                actionName: 'view',
+            },
+        })
+        window.open(url, '_blank')
     }
 
     get activeBadgeCalculatedClass() {
@@ -50,5 +49,4 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
     get iconName() {
         return ICON_NAME_BY_BINDING_TYPE[this.record.Type__c]
     }
-
 }

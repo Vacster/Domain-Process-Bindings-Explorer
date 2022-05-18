@@ -4,18 +4,21 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings';
-import { api, LightningElement, wire } from 'lwc';
+import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
+import { api, LightningElement, wire } from 'lwc'
 
 export default class DomainProcessBindingViewer extends LightningElement {
-
     @api selectedSObjectDeveloperName = 'Account'
 
     @api triggerOperation = 'Before_Insert'
 
     @api isAsync = false
 
-    @wire(getDomainProcessBindings, {sObjectDeveloperName: '$selectedSObjectDeveloperName', triggerOperation: '$triggerOperation', isAsync: '$isAsync'})
+    @wire(getDomainProcessBindings, {
+        sObjectDeveloperName: '$selectedSObjectDeveloperName',
+        triggerOperation: '$triggerOperation',
+        isAsync: '$isAsync',
+    })
     domainProcessBindings
 
     get calculatedTitle() {
