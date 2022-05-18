@@ -22,7 +22,7 @@ public with sharing class DomainBindingExplorerController {
     ) {
         try {
             return DomainProcessBindingSelector.newInstance()
-                .selectActiveByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+                .selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
                     sObjectDeveloperName,
                     triggerOperation,
                     isAsync

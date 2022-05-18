@@ -21,6 +21,7 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         };
     }
 
+    @TestVisible
     private List<Schema.SObjectField> getAdditionalSObjectFieldList() {
         return new List<Schema.SObjectField>{};
     }
@@ -29,7 +30,7 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         return DomainProcessBinding__mdt.SObjectType;
     }
 
-    public List<DomainProcessBinding__mdt> selectActiveByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+    public List<DomainProcessBinding__mdt> selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
         final String sObjectDeveloperName,
         final String triggerOperation,
         final Boolean isAsync
