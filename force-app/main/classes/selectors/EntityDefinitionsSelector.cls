@@ -13,6 +13,7 @@ public inherited sharing class EntityDefinitionsSelector extends ApplicationSObj
         return new List<Schema.SObjectField>{ EntityDefinition.Id, EntityDefinition.DeveloperName, EntityDefinition.Label };
     }
 
+    @TestVisible
     private List<Schema.SObjectField> getAdditionalSObjectFieldList() {
         return new List<Schema.SObjectField>{};
     }
