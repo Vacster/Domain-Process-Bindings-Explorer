@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2022, Kamil Segebre
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 public inherited sharing class DomainProcessBindingSelector extends ApplicationSObjectSelector implements IDomainProcessBindingSelector {
     public static IDomainProcessBindingSelector newInstance() {
         return (IDomainProcessBindingSelector) Application.Selector.newInstance(DomainProcessBinding__mdt.SObjectType);
