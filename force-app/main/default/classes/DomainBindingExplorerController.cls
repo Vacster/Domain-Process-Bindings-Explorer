@@ -7,7 +7,6 @@
 public with sharing class DomainBindingExplorerController {
     @AuraEnabled(Cacheable=true)
     public static List<EntityDefinition> getEntityDefinitions() {
-        //TODO: Transfer this into an EntityDefinitionsSelector to allow mocking in tests
         try {
             return EntityDefinitionsSelector.newInstance().selectByApexTriggerable(true);
         } catch (Exception e) {
@@ -21,31 +20,15 @@ public with sharing class DomainBindingExplorerController {
         final String triggerOperation,
         final Boolean isAsync
     ) {
-        //TODO: Transfer this into a DomainProcessBindingsSelector to allow mocking in tests
-        List<DomainProcessBinding__mdt> domainProcessBindings = [
-            SELECT Id, MasterLabel, DeveloperName, IsActive__c, OrderOfExecution__c, Type__c, ExecuteAsynchronous__c
-            FROM DomainProcessBinding__mdt
-            WHERE
-                RelatedDomainBindingSObject__c = :sObjectDeveloperName
-                AND TriggerOperation__c = :triggerOperation
-                AND ExecuteAsynchronous__c = :isAsync
-            WITH SECURITY_ENFORCED
-            ORDER BY OrderOfExecution__c ASC
-        ];
-
-        final List<DomainProcessBinding__mdt> alternateRelatedObjectDomainProcessBindings = [
-            SELECT Id, MasterLabel, DeveloperName, IsActive__c, OrderOfExecution__c, Type__c, ExecuteAsynchronous__c
-            FROM DomainProcessBinding__mdt
-            WHERE
-                RelatedDomainBindingSObjectAlternate__c = :sObjectDeveloperName
-                AND TriggerOperation__c = :triggerOperation
-                AND ExecuteAsynchronous__c = :isAsync
-            WITH SECURITY_ENFORCED
-            ORDER BY OrderOfExecution__c ASC
-        ];
-
-        domainProcessBindings.addAll(alternateRelatedObjectDomainProcessBindings);
-
-        return domainProcessBindings;
+        try {
+            return DomainProcessBindingSelector.newInstance()
+                .selectActiveByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+                    sObjectDeveloperName,
+                    triggerOperation,
+                    isAsync
+                );
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 }

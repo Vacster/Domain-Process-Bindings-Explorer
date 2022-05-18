@@ -3,14 +3,6 @@ public inherited sharing class EntityDefinitionsSelector extends ApplicationSObj
         return (IEntityDefinitionsSelector) Application.Selector.newInstance(EntityDefinition.SObjectType);
     }
 
-    public EntityDefinitionsSelector() {
-        super();
-    }
-
-    public EntityDefinitionsSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS) {
-        super(includeFieldSetFields, enforceCRUD, enforceFLS);
-    }
-
     public override List<Schema.SObjectField> getSObjectFieldList() {
         return new List<Schema.SObjectField>{ EntityDefinition.Id, EntityDefinition.DeveloperName, EntityDefinition.Label };
     }
