@@ -1,6 +1,7 @@
 *.d.ts
 .sfdx/**
 .sf/**
+.vscode/**
 node_modules/**
 
 .DS_Store
