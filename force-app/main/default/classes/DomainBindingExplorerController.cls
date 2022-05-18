@@ -9,12 +9,7 @@ public with sharing class DomainBindingExplorerController {
     public static List<EntityDefinition> getEntityDefinitions() {
         //TODO: Transfer this into an EntityDefinitionsSelector to allow mocking in tests
         try {
-            return [
-                SELECT Id, DeveloperName, Label
-                FROM EntityDefinition
-                WHERE IsApexTriggerable = TRUE
-                WITH SECURITY_ENFORCED
-            ];
+            return EntityDefinitionsSelector.newInstance().selectByApexTriggerable(true);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
