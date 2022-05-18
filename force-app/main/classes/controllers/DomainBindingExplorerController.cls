@@ -10,7 +10,9 @@ public with sharing class DomainBindingExplorerController {
         try {
             return EntityDefinitionsSelector.newInstance().selectByApexTriggerable(true);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            AuraHandledException convertedException = new AuraHandledException(e.getMessage());
+            convertedException.setMessage(e.getMessage());
+            throw convertedException;
         }
     }
 
@@ -28,7 +30,9 @@ public with sharing class DomainBindingExplorerController {
                     isAsync
                 );
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            AuraHandledException convertedException = new AuraHandledException(e.getMessage());
+            convertedException.setMessage(e.getMessage());
+            throw convertedException;
         }
     }
 }
