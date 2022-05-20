@@ -1,0 +1,29 @@
+[
+    {
+        "DeveloperName": "Criteria_Test",
+        "ExecuteAsynchronous__c": false,
+        "Id": "m041j000000M6ywAAC",
+        "IsActive__c": true,
+        "MasterLabel": "Insert Criteria Test",
+        "OrderOfExecution__c": 1,
+        "Type__c": "Criteria"
+    },
+    {
+        "DeveloperName": "Action_Test",
+        "ExecuteAsynchronous__c": false,
+        "Id": "m041j000000M6OLAA0",
+        "IsActive__c": true,
+        "MasterLabel": "Insert Action Test",
+        "OrderOfExecution__c": 1.1,
+        "Type__c": "Action"
+    },
+    {
+        "DeveloperName": "Inactive_Action_Test",
+        "ExecuteAsynchronous__c": false,
+        "Id": "m041j000000M6aqAA0",
+        "IsActive__c": true,
+        "MasterLabel": "Inactive Action Test",
+        "OrderOfExecution__c": 1.2,
+        "Type__c": "Action"
+    }
+]

@@ -16,7 +16,7 @@
                     class="slds-grid slds-gutters_xxx-small slds-text-color_weak slds-text-body_regular"
                     style="font-weight: var(--lwc-fontWeightLight)"
                 >
-                    <span class="slds-col slds-grow-none"
+                    <span class="slds-col slds-grow-none" data-id="list-length"
                         >{domainProcessBindingsListLength} Item(s)</span
                     >
                     <span class="slds-col slds-grow-none" role="separator">•</span>
@@ -33,7 +33,7 @@
             </template>
         </template>
         <template if:false={domainProcessBindingsListLength}>
-            <p class="slds-p-horizontal_small slds-border_top">No items to display</p>
+            <p class="slds-p-horizontal_small slds-border_top" data-id="no-items-text">No items to display</p>
         </template>
     </lightning-card>
 </template>

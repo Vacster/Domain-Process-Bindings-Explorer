@@ -38,7 +38,6 @@ describe('c-entity-definition-selector', () => {
             // emit data from @wire
             getEntityDefinitions.emit(mockGetEntityDefinitions)
 
-            // Wait for any asynchronous DOM updates
             await flushPromises()
 
             const lightningCombobox = element.shadowRoot.querySelector('lightning-combobox')

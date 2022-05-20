@@ -38,11 +38,12 @@ export default class DomainProcessBindingViewer extends LightningElement {
         return title
     }
 
+    //TODO: Figures out why this line method does not show up as covered during jest tests
     get domainProcessBindingsList() {
-        return this.domainProcessBindings.data ?? []
+        return this.domainProcessBindings?.data ?? []
     }
 
     get domainProcessBindingsListLength() {
-        return this.domainProcessBindings.data?.length
+        return this.domainProcessBindings.data?.length ?? 0
     }
 }
