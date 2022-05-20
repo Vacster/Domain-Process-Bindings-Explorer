@@ -44,6 +44,6 @@ export default class DomainProcessBindingViewer extends LightningElement {
     }
 
     get domainProcessBindingsListLength() {
-        return this.domainProcessBindings.data?.length ?? 0
+        return this.domainProcessBindings?.data?.length ?? 0
     }
 }
