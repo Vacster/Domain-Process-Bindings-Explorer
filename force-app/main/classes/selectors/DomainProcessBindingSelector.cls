@@ -30,6 +30,10 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         return DomainProcessBinding__mdt.SObjectType;
     }
 
+    public override String getOrderBy() {
+        return 'OrderOfExecution__c ASC';
+    }
+
     public List<DomainProcessBinding__mdt> selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
         final String sObjectDeveloperName,
         final String triggerOperation,

@@ -126,4 +126,18 @@ private class DomainProcessBindingSelectorTest {
             );
         }
     }
+
+    @IsTest
+    private static void getOrderByShouldReturnAscendingOrderOfExecution() {
+        // prepare
+        final String expectedOrderByValue = 'OrderOfExecution__c ASC';
+
+        // exercise
+        Test.startTest();
+        final String returnedOrderByValue = new DomainProcessBindingSelector().getOrderBy();
+        Test.stopTest();
+
+        // validate
+        System.assertEquals(expectedOrderByValue, returnedOrderByValue, 'Expected Ascending order by OrderOfExecution__c field');
+    }
 }
