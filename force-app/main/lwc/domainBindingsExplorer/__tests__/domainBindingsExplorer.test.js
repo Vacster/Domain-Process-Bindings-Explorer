@@ -1,6 +1,5 @@
 import { createElement } from 'lwc'
 import DomainBindingsExplorer from 'c/domainBindingsExplorer'
-import { POSSIBLE_ACTIONS } from '../../domainProcessBindingsFilter/domainProcessBindingsFilter'
 
 describe('c-domain-bindings-explorer', () => {
     afterEach(() => {
