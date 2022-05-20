@@ -7,7 +7,7 @@
 import { api, LightningElement } from 'lwc'
 import { NavigationMixin } from 'lightning/navigation'
 
-const ICON_NAME_BY_BINDING_TYPE = {
+export const ICON_NAME_BY_BINDING_TYPE = {
     Action: 'standard:invocable_action',
     Criteria: 'standard:activations',
 }
@@ -32,21 +32,29 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
 
     get activeBadgeCalculatedClass() {
         let classes = 'slds-grow-none slds-col_bump-left slds-badge '
-        if (this.record.IsActive__c) {
+        if (this.record?.IsActive__c) {
             classes += 'slds-badge_lightest'
         }
         return classes
     }
 
     get activeBadgeLabel() {
-        if (this.record.IsActive__c) {
+        if (this.record?.IsActive__c) {
             return 'Active'
-        } else {
-            return 'Inactive'
         }
+        return 'Inactive'
+    }
+
+    get recordLabel() {
+        return this.record?.MasterLabel
+    }
+
+    get orderOfExecution() {
+        return this.record?.OrderOfExecution__c
     }
 
     get iconName() {
-        return ICON_NAME_BY_BINDING_TYPE[this.record.Type__c]
+        return ICON_NAME_BY_BINDING_TYPE[this.record?.Type__c]
     }
+
 }
