@@ -59,13 +59,13 @@ describe('c-entity-definition-selector', () => {
                 is: EntityDefinitionSelector,
             })
             const handler = jest.fn()
-            element.addEventListener('objectchanged', handler)
+            element.addEventListener('object_changed', handler)
             document.body.appendChild(element)
 
             const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
             lightningComboboxEl.dispatchEvent(
                 new CustomEvent('change', {
-                    detail: {value: MOCK_SOBJECT_DEVELOPER_NAME}
+                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
                 })
             )
             await flushPromises()
@@ -81,7 +81,7 @@ describe('c-entity-definition-selector', () => {
             const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
             lightningComboboxEl.dispatchEvent(
                 new CustomEvent('change', {
-                    detail: {value: MOCK_SOBJECT_DEVELOPER_NAME}
+                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
                 })
             )
 
@@ -106,7 +106,7 @@ describe('c-entity-definition-selector', () => {
             const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
             lightningComboboxEl.dispatchEvent(
                 new CustomEvent('change', {
-                    detail: {value: MOCK_SOBJECT_DEVELOPER_NAME}
+                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
                 })
             )
 

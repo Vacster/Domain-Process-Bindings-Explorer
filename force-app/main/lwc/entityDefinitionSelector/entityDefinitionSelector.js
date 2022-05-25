@@ -27,8 +27,9 @@ export default class EntityDefinitionSelector extends LightningElement {
     handleObjectChange(event) {
         this._selectedSObjectDeveloperName = event.detail.value
         this._displayPopover = false
+
         this.dispatchEvent(
-            new CustomEvent('objectchanged', {
+            new CustomEvent('object_changed', {
                 detail: this._selectedSObjectDeveloperName,
             })
         )

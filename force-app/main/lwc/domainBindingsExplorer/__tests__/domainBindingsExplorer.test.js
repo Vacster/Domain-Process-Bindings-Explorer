@@ -19,15 +19,15 @@ describe('c-domain-bindings-explorer', () => {
                 is: DomainBindingsExplorer,
             })
             document.body.appendChild(element)
- 
+
             const domainProcessBindingsFilterEl = element.shadowRoot.querySelector(
                 'c-domain-process-bindings-filter'
             )
-            domainProcessBindingsFilterEl.dispatchEvent(new CustomEvent(
-                'actionchanged', {
-                    detail: 'update'
-                }
-            ))
+            domainProcessBindingsFilterEl.dispatchEvent(
+                new CustomEvent('action_changed', {
+                    detail: 'update',
+                })
+            )
 
             await flushPromises()
 
@@ -35,13 +35,13 @@ describe('c-domain-bindings-explorer', () => {
                 'c-domain-process-binding-viewer'
             )
             expect(domainProcessBindingsViewerEls.length).toBe(3)
-    
+
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Update')
             expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
-    
+
             expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Update')
             expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('Account')
-    
+
             expect(domainProcessBindingsViewerEls[2].triggerOperation).toBe('After_Update')
             expect(domainProcessBindingsViewerEls[2].selectedSObjectDeveloperName).toBe('Account')
             expect(domainProcessBindingsViewerEls[2].isAsync).toBe('true')
@@ -52,15 +52,15 @@ describe('c-domain-bindings-explorer', () => {
                 is: DomainBindingsExplorer,
             })
             document.body.appendChild(element)
- 
+
             const domainProcessBindingsFilterEl = element.shadowRoot.querySelector(
                 'c-domain-process-bindings-filter'
             )
-            domainProcessBindingsFilterEl.dispatchEvent(new CustomEvent(
-                'actionchanged', {
-                    detail: 'delete'
-                }
-            ))
+            domainProcessBindingsFilterEl.dispatchEvent(
+                new CustomEvent('action_changed', {
+                    detail: 'delete',
+                })
+            )
 
             await flushPromises()
 
@@ -68,13 +68,13 @@ describe('c-domain-bindings-explorer', () => {
                 'c-domain-process-binding-viewer'
             )
             expect(domainProcessBindingsViewerEls.length).toBe(3)
-    
+
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Delete')
             expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
-    
+
             expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Delete')
             expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('Account')
-    
+
             expect(domainProcessBindingsViewerEls[2].triggerOperation).toBe('After_Delete')
             expect(domainProcessBindingsViewerEls[2].selectedSObjectDeveloperName).toBe('Account')
             expect(domainProcessBindingsViewerEls[2].isAsync).toBe('true')
@@ -89,15 +89,15 @@ describe('c-domain-bindings-explorer', () => {
                 is: DomainBindingsExplorer,
             })
             document.body.appendChild(element)
-    
+
             const domainProcessBindingsFilterEl = element.shadowRoot.querySelector(
                 'c-domain-process-bindings-filter'
             )
-            domainProcessBindingsFilterEl.dispatchEvent(new CustomEvent(
-                'objectchanged', {
-                    detail: SOBJECT_DEVELOPER_NAME
-                }
-            ))
+            domainProcessBindingsFilterEl.dispatchEvent(
+                new CustomEvent('object_changed', {
+                    detail: SOBJECT_DEVELOPER_NAME,
+                })
+            )
 
             await flushPromises()
 
@@ -105,15 +105,21 @@ describe('c-domain-bindings-explorer', () => {
                 'c-domain-process-binding-viewer'
             )
             expect(domainProcessBindingsViewerEls.length).toBe(3)
-    
+
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Insert')
-            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe(SOBJECT_DEVELOPER_NAME)
-    
-            expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Insert') 
-            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe(SOBJECT_DEVELOPER_NAME)
-    
+            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe(
+                SOBJECT_DEVELOPER_NAME
+            )
+
+            expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Insert')
+            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe(
+                SOBJECT_DEVELOPER_NAME
+            )
+
             expect(domainProcessBindingsViewerEls[2].triggerOperation).toBe('After_Insert')
-            expect(domainProcessBindingsViewerEls[2].selectedSObjectDeveloperName).toBe(SOBJECT_DEVELOPER_NAME)
+            expect(domainProcessBindingsViewerEls[2].selectedSObjectDeveloperName).toBe(
+                SOBJECT_DEVELOPER_NAME
+            )
             expect(domainProcessBindingsViewerEls[2].isAsync).toBe('true')
         })
     })

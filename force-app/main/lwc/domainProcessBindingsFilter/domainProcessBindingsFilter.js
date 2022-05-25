@@ -17,7 +17,7 @@ export default class DomainProcessBindingsFilter extends LightningElement {
 
     handleObjectChanged(event) {
         this.dispatchEvent(
-            new CustomEvent('objectchanged', {
+            new CustomEvent('object_changed', {
                 detail: event.detail,
             })
         )
@@ -28,7 +28,7 @@ export default class DomainProcessBindingsFilter extends LightningElement {
             (action) => action.value === event.detail.value
         )
         this.dispatchEvent(
-            new CustomEvent('actionchanged', {
+            new CustomEvent('action_changed', {
                 detail: this._selectedAction.value,
             })
         )
