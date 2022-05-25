@@ -12,7 +12,20 @@ export const ICON_NAME_BY_BINDING_TYPE = {
     Criteria: 'standard:activations',
 }
 
+/**
+ * Displays information regarding a single Domain Process Binding record
+ * 
+ * @alias DomainProcessBindingListItem
+ * @hideconstructor
+ * 
+ * @example
+ * <c-domain-process-binding-list-item record={domainProcessBinding}></c-domain-process-binding-list-item>
+ */
 export default class DomainProcessBindingListItem extends NavigationMixin(LightningElement) {
+    /**
+     * A Domain process Binding record
+     * @type {DomainProcessBinding}
+     */
     @api record
 
     async navigateToRecord(event) {
@@ -56,5 +69,4 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
     get iconName() {
         return ICON_NAME_BY_BINDING_TYPE[this.record?.Type__c]
     }
-
 }

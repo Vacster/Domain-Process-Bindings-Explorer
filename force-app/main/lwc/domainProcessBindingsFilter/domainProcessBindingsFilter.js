@@ -12,6 +12,21 @@ export const POSSIBLE_ACTIONS = [
     { label: 'Deleted', value: 'delete' },
 ]
 
+/**
+ * Allows filtering of Domain Process Bindings by SObject or by Action
+ *
+ * @alias DomainProcessBindingsFilter
+ * @hideconstructor
+ *
+ * @fires DomainProcessBindingsFilter#action_changed
+ * @fires DomainProcessBindingsFilter#object_changed
+ *
+ * @example
+ * <c-domain-process-bindings-filter
+ *      onobject_changed={handleObjectChanged}
+ *      onaction_changed={handleActionChanged}
+ * ></c-domain-process-bindings-filter>
+ */
 export default class DomainProcessBindingsFilter extends LightningElement {
     _selectedAction = POSSIBLE_ACTIONS[0]
 
@@ -42,3 +57,26 @@ export default class DomainProcessBindingsFilter extends LightningElement {
         return this._selectedAction?.label
     }
 }
+
+/**
+ * Action selected has changed
+ *
+ * @memberof DomainProcessBindingsFilter
+ * @event DomainProcessBindingsFilter#action_changed
+ * @type {CustomEvent}
+ * @property {DomainProcessBindingsFilter~ActionType} detail - the selected Action
+ */
+
+/**
+ * SObject selected has changed
+ *
+ * @memberof DomainProcessBindingsFilter
+ * @event DomainProcessBindingsFilter#object_changed
+ * @type {CustomEvent}
+ * @property {String} detail - the selected SObject's DeveloperName
+ */
+
+/**
+ * Describes the possible action types
+ * @typedef {('create'|'update'|'delete')} DomainProcessBindingsFilter~ActionType
+ */
