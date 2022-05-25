@@ -1,20 +1,20 @@
 [
-    {
-        "DeveloperName": "Async_Criteria_Test",
-        "ExecuteAsynchronous__c": true,
-        "Id": "m041j000000M6aqAA0",
-        "IsActive__c": true,
-        "MasterLabel": "Async Criteria Test",
-        "OrderOfExecution__c": 1.0,
-        "Type__c": "Criteria"
-    },
-    {
-        "DeveloperName": "Async_Action_Test",
-        "ExecuteAsynchronous__c": true,
-        "Id": "m041j000000M6pqAA0",
-        "IsActive__c": true,
-        "MasterLabel": "Async Action Test",
-        "OrderOfExecution__c": 1.1,
-        "Type__c": "Action"
-    }
+  {
+    "DeveloperName": "Async_Criteria_Test",
+    "ExecuteAsynchronous__c": true,
+    "Id": "m041j000000M6aqAA0",
+    "IsActive__c": true,
+    "MasterLabel": "Async Criteria Test",
+    "OrderOfExecution__c": 1.0,
+    "Type__c": "Criteria"
+  },
+  {
+    "DeveloperName": "Async_Action_Test",
+    "ExecuteAsynchronous__c": true,
+    "Id": "m041j000000M6pqAA0",
+    "IsActive__c": true,
+    "MasterLabel": "Async Action Test",
+    "OrderOfExecution__c": 1.1,
+    "Type__c": "Action"
+  }
 ]

@@ -1,9 +1,9 @@
 {
-    "DeveloperName": "Action_Test",
-    "ExecuteAsynchronous__c": false,
-    "Id": "m041j000000M6OLAA0",
-    "IsActive__c": true,
-    "MasterLabel": "Action Test",
-    "OrderOfExecution__c": 1.1,
-    "Type__c": "Action"
+  "DeveloperName": "Action_Test",
+  "ExecuteAsynchronous__c": false,
+  "Id": "m041j000000M6OLAA0",
+  "IsActive__c": true,
+  "MasterLabel": "Action Test",
+  "OrderOfExecution__c": 1.1,
+  "Type__c": "Action"
 }
