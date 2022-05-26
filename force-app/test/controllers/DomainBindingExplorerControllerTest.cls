@@ -67,13 +67,11 @@ private class DomainBindingExplorerControllerTest {
         // prepare
         final String sObjectDeveloperName = 'PotatoDeveloperName';
         final String triggerOperation = 'Before_Insert';
-        final Boolean isAsync = false;
         final List<DomainProcessBinding__mdt> mockDomainProcessBindings = new List<DomainProcessBinding__mdt> {
             new DomainProcessBinding__mdt(
                 Id = fflib_IDGenerator.generate(DomainProcessBinding__mdt.SObjectType),
                 RelatedDomainBindingSObjectAlternate__c = sObjectDeveloperName,
-                TriggerOperation__c = triggerOperation,
-                ExecuteAsynchronous__c = isAsync
+                TriggerOperation__c = triggerOperation
             )
         };
 
@@ -81,8 +79,8 @@ private class DomainBindingExplorerControllerTest {
         IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(IDomainProcessBindingSelector.class);
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
-            sObjectDeveloperName, triggerOperation, isAsync
+        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
+            sObjectDeveloperName, triggerOperation
         )).thenReturn(mockDomainProcessBindings);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
@@ -90,7 +88,7 @@ private class DomainBindingExplorerControllerTest {
         // exercise
         Test.startTest();
         final List<DomainProcessBinding__mdt> returnedDomainProcessBindings = DomainBindingExplorerController.getDomainProcessBindings(
-            sObjectDeveloperName, triggerOperation, isAsync
+            sObjectDeveloperName, triggerOperation
         );
         Test.stopTest();
 
@@ -107,10 +105,9 @@ private class DomainBindingExplorerControllerTest {
         IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(IDomainProcessBindingSelector.class);
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
             fflib_Match.anyString(),
-            fflib_Match.anyString(),
-            fflib_Match.anyBoolean()
+            fflib_Match.anyString()
         )).thenThrow(exceptionToThrow);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
@@ -121,8 +118,7 @@ private class DomainBindingExplorerControllerTest {
         try {
             final List<DomainProcessBinding__mdt> returnedEntityDefinitions = DomainBindingExplorerController.getDomainProcessBindings(
                 'these values do not matter',
-                'for this specific test',
-                false
+                'for this specific test'
             );
         } catch (Exception e) {
             caughtException = e;

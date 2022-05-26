@@ -34,22 +34,21 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         return 'OrderOfExecution__c ASC';
     }
 
-    public List<DomainProcessBinding__mdt> selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+    public List<DomainProcessBinding__mdt> selectByRelatedDomainBindingSObjectTriggerOperation(
         final String sObjectDeveloperName,
-        final String triggerOperation,
-        final Boolean isAsync
+        final String triggerOperation
     ) {
         List<DomainProcessBinding__mdt> domainProcessBindings = (List<DomainProcessBinding__mdt>) Database.query(
             newQueryFactory()
                 .setCondition(
-                    'RelatedDomainBindingSObject__c = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation AND ExecuteAsynchronous__c = :isAsync'
+                    'RelatedDomainBindingSObject__c = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation'
                 )
                 .toSOQL()
         );
         final List<DomainProcessBinding__mdt> alternateRelatedObjectDomainProcessBindings = (List<DomainProcessBinding__mdt>) Database.query(
             newQueryFactory()
                 .setCondition(
-                    'RelatedDomainBindingSObjectAlternate__c = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation AND ExecuteAsynchronous__c = :isAsync'
+                    'RelatedDomainBindingSObjectAlternate__c = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation'
                 )
                 .toSOQL()
         );

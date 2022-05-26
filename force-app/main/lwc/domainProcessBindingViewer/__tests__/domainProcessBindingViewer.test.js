@@ -3,7 +3,6 @@ import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerCont
 import DomainProcessBindingViewer from 'c/domainProcessBindingViewer'
 
 const mockGetDomainProcessBindings = require('./data/getDomainProcessBindings.json')
-const mockGetDomainProcessBindingsAsync = require('./data/getDomainProcessBindingsAsync.json')
 
 jest.mock(
     '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings',
@@ -27,7 +26,6 @@ describe('c-domain-process-binding-viewer', () => {
     async function flushPromises() {
         return Promise.resolve()
     }
-
 
     describe('synchronous process bindings retrieved', () => {
         it('displays expected values on After', async () => {
@@ -81,53 +79,6 @@ describe('c-domain-process-binding-viewer', () => {
 
             const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
             expect(noItemsPEl).toBeNull()
-        })
-    })
-
-    describe('asynchronoius process bindings retrieved', () => {
-        it('displays expected values on After Async', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            element.triggerOperation = 'After_Update'
-            element.isAsync = true
-            document.body.appendChild(element)
-    
-            getDomainProcessBindings.emit(mockGetDomainProcessBindingsAsync)
-    
-            await flushPromises()
-
-            const h4El = element.shadowRoot.querySelector('h4')
-            expect(h4El.textContent).toBe('Run Asynchronously')
-
-            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll('c-domain-process-binding-list-item')
-            expect(domainProcessBindingListItemEls.length).toBe(mockGetDomainProcessBindingsAsync.length)
-            for (let [index, domainProcessBindingListItemEl] of domainProcessBindingListItemEls.entries()) {
-                expect(domainProcessBindingListItemEl.record.Id).toBe(mockGetDomainProcessBindingsAsync[index].Id)
-            }
-
-            const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
-            expect(listLengthSpanEl.textContent).toBe(`${mockGetDomainProcessBindingsAsync.length} Item(s)`)
-
-            const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
-            expect(noItemsPEl).toBeNull()
-        })
-        it('throws error on impossible Before Async', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            element.triggerOperation = 'Before_Insert'
-            element.isAsync = true
-
-            let caughtError = null
-            try {
-                document.body.appendChild(element)
-            } catch (error) {
-                caughtError = error
-            }
-
-            expect(caughtError).not.toBeNull()
-            expect(caughtError.message).toBe('Impossible State Found: Before + Async')
         })
     })
 

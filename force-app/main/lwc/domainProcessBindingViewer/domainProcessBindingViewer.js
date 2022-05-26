@@ -12,12 +12,9 @@ export default class DomainProcessBindingViewer extends LightningElement {
 
     @api triggerOperation = 'Before_Insert'
 
-    @api isAsync = false
-
     @wire(getDomainProcessBindings, {
         sObjectDeveloperName: '$selectedSObjectDeveloperName',
-        triggerOperation: '$triggerOperation',
-        isAsync: '$isAsync',
+        triggerOperation: '$triggerOperation'
     })
     domainProcessBindings
 
@@ -29,11 +26,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
             }
             title = 'Record Before Save'
         } else if (this.triggerOperation.startsWith('After')) {
-            if (this.isAsync) {
-                title = 'Run Asynchronously'
-            } else {
-                title = 'Record After Save'
-            }
+            title = 'Record After Save'
         }
         return title
     }
