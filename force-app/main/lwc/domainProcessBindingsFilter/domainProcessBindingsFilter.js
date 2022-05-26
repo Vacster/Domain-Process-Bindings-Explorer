@@ -20,11 +20,13 @@ export const POSSIBLE_ACTIONS = [
  *
  * @fires DomainProcessBindingsFilter#action_changed
  * @fires DomainProcessBindingsFilter#object_changed
+ * @fires DomainProcessBindingsFilter#refresh
  *
  * @example
  * <c-domain-process-bindings-filter
  *      onobject_changed={handleObjectChanged}
  *      onaction_changed={handleActionChanged}
+ *      onrefresh={handleRefresh}
  * ></c-domain-process-bindings-filter>
  */
 export default class DomainProcessBindingsFilter extends LightningElement {
@@ -80,6 +82,14 @@ export default class DomainProcessBindingsFilter extends LightningElement {
  * @event DomainProcessBindingsFilter#object_changed
  * @type {CustomEvent}
  * @property {String} detail - the selected SObject's DeveloperName
+ */
+
+/**
+ * Refresh button has been clicked
+ *
+ * @memberof DomainProcessBindingsFilter
+ * @event DomainProcessBindingsFilter#refresh
+ * @type {CustomEvent}
  */
 
 /**

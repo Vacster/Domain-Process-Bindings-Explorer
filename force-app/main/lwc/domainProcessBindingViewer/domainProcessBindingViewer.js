@@ -44,6 +44,12 @@ export default class DomainProcessBindingViewer extends LightningElement {
      */
     @api isAsync = false
 
+    /**
+     * Refreshes the Domain Process Binding records
+     * @function refreshBindings
+     * @instance
+     * @memberof DomainProcessBindingViewer
+     */
     @api refreshBindings() {
         refreshApex(this.domainProcessBindings)
     }
