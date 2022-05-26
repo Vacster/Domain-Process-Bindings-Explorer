@@ -124,6 +124,32 @@ describe('c-domain-bindings-explorer', () => {
         })
     })
 
+    describe('refresh called', () => {
+        it('refreshes viewers', async () => {
+            const element = createElement('c-domain-bindings-explorer', {
+                is: DomainBindingsExplorer,
+            })
+            document.body.appendChild(element)
+
+            const domainProcessBindingsViewerEls = element.shadowRoot.querySelectorAll(
+                'c-domain-process-binding-viewer'
+            )
+
+            const spyArray = domainProcessBindingsViewerEls
+                .values()
+                .map((el) => jest.spyOn(el, 'refreshBindings'))
+
+            const domainProcessBindingsFilterEl = element.shadowRoot.querySelector(
+                'c-domain-process-bindings-filter'
+            )
+            domainProcessBindingsFilterEl.dispatchEvent(new CustomEvent('refresh'))
+
+            await flushPromises()
+
+            spyArray.forEach((spy) => expect(spy).toHaveBeenCalledTimes(1))
+        })
+    })
+
     it('displays default values', () => {
         const element = createElement('c-domain-bindings-explorer', {
             is: DomainBindingsExplorer,

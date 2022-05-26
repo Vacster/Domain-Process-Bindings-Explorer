@@ -75,6 +75,26 @@ describe('c-domain-process-bindings-filter', () => {
         })
     })
 
+    describe('refresh button clicked', () => {
+        it('sends out a refresh event', async () => {
+            const element = createElement('c-domain-process-bindings-filter', {
+                is: DomainProcessBindingsFilter,
+            })
+            const handler = jest.fn()
+            element.addEventListener('refresh', handler)
+            document.body.appendChild(element)
+
+            const refreshButtonEl = element.shadowRoot.querySelector('lightning-button-icon')
+            expect(refreshButtonEl).not.toBeNull()
+
+            refreshButtonEl.click()
+
+            await flushPromises()
+
+            expect(handler.mock.calls.length).toBe(1)
+        })
+    })
+
     it('has default values', () => {
         const element = createElement('c-domain-process-bindings-filter', {
             is: DomainProcessBindingsFilter,

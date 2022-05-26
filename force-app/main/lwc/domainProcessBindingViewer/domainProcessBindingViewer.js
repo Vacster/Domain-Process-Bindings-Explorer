@@ -4,8 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
+
 import { api, LightningElement, wire } from 'lwc'
+import { refreshApex } from '@salesforce/apex'
+import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
 
 /**
  * Displays a list of Domain Process Bindings that fit the criteria passed through this component's public properties
@@ -41,6 +43,10 @@ export default class DomainProcessBindingViewer extends LightningElement {
      * @default false
      */
     @api isAsync = false
+
+    @api refreshBindings() {
+        refreshApex(this.domainProcessBindings)
+    }
 
     @wire(getDomainProcessBindings, {
         sObjectDeveloperName: '$selectedSObjectDeveloperName',

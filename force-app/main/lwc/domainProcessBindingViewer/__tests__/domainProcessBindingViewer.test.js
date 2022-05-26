@@ -1,4 +1,5 @@
 import { createElement } from 'lwc'
+import { refreshApex } from '@salesforce/apex'
 import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
 import DomainProcessBindingViewer from 'c/domainProcessBindingViewer'
 
@@ -16,12 +17,23 @@ jest.mock(
     { virtual: true }
 )
 
+jest.mock(
+    '@salesforce/apex',
+    () => {
+        return {
+            refreshApex: jest.fn(() => Promise.resolve()),
+        }
+    },
+    { virtual: true }
+)
+
 describe('c-domain-process-binding-viewer', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild)
         }
+        jest.clearAllMocks()
     })
 
     async function flushPromises() {
@@ -156,6 +168,35 @@ describe('c-domain-process-binding-viewer', () => {
 
             expect(caughtError).not.toBeNull()
             expect(caughtError.message).toBe('Impossible State Found: Before + Async')
+        })
+    })
+
+    describe('RefreshBindings called', () => {
+        const EMPTY_WIRE = { data: undefined, error: undefined }
+        it('calls refreshApex on empty wire by default', async () => {
+            const element = createElement('c-domain-process-binding-viewer', {
+                is: DomainProcessBindingViewer,
+            })
+            document.body.appendChild(element)
+
+            element.refreshBindings()
+
+            expect(refreshApex).toHaveBeenCalledTimes(1)
+            expect(refreshApex).toHaveBeenCalledWith(EMPTY_WIRE)
+        })
+        it('calls refreshApex on wire', async () => {
+            const element = createElement('c-domain-process-binding-viewer', {
+                is: DomainProcessBindingViewer,
+            })
+            element.triggerOperation = 'After_Update'
+            document.body.appendChild(element)
+
+            getDomainProcessBindings.emit(mockGetDomainProcessBindings)
+
+            element.refreshBindings()
+
+            expect(refreshApex).toHaveBeenCalledTimes(1)
+            expect(refreshApex).not.toHaveBeenCalledWith(EMPTY_WIRE) //TODO: find better way to verify if it's calling expected wire
         })
     })
 

@@ -6,28 +6,39 @@
 -->
 <template>
     <div class="slds-page-header">
-        <span>
+        <span class="slds-grid slds-align_absolute-center">
             <!-- TODO: Make icon dynamic based on sObjectDeveloperName -->
             <lightning-icon
                 icon-name="standard:opportunity"
-                class="slds-m-right_small"
+                class="slds-col slds-grow-none slds-m-right_small"
             ></lightning-icon>
-            When a(n)&nbsp;
-            <c-entity-definition-selector
-                onobject_changed={handleObjectChanged}
-            ></c-entity-definition-selector>
-            &nbsp;record&nbsp;is&nbsp;<b data-id="selected-action-label">{selectedActionLabel}</b>
-            <lightning-button-menu onselect={handleMenuSelect} variant="bare">
-                <template for:each={possibleActions} for:item="action">
-                    <lightning-menu-item
-                        id={action.value}
-                        label={action.label}
-                        value={action.value}
-                        key={action.label}
-                    >
-                    </lightning-menu-item>
-                </template>
-            </lightning-button-menu>
+            <span class="slds-col slds-grow-none">
+                When a(n)&nbsp;
+                <c-entity-definition-selector
+                    onobjectchanged={handleObjectChanged}
+                ></c-entity-definition-selector>
+                &nbsp;record&nbsp;is&nbsp;<b data-id="selected-action-label"
+                    >{selectedActionLabel}</b
+                >
+                <lightning-button-menu onselect={handleMenuSelect} variant="bare">
+                    <template for:each={possibleActions} for:item="action">
+                        <lightning-menu-item
+                            id={action.value}
+                            label={action.label}
+                            value={action.value}
+                            key={action.label}
+                        >
+                        </lightning-menu-item>
+                    </template>
+                </lightning-button-menu>
+            </span>
+            <lightning-button-icon
+                class="slds-grow-none slds-col_bump-left"
+                icon-name="utility:refresh"
+                variant="border-filled"
+                onclick={handleRefresh}
+                tooltip="Refresh the Domain Process Bindings"
+            ></lightning-button-icon>
         </span>
     </div>
 </template>
