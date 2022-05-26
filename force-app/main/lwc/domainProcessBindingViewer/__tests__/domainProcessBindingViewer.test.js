@@ -1,4 +1,5 @@
 import { createElement } from 'lwc'
+import { refreshApex } from '@salesforce/apex'
 import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
 import DomainProcessBindingViewer from 'c/domainProcessBindingViewer'
 
@@ -16,18 +17,28 @@ jest.mock(
     { virtual: true }
 )
 
+jest.mock(
+    '@salesforce/apex',
+    () => {
+        return {
+            refreshApex: jest.fn(() => Promise.resolve()),
+        }
+    },
+    { virtual: true }
+)
+
 describe('c-domain-process-binding-viewer', () => {
     afterEach(() => {
         // The jsdom instance is shared across test cases in a single file so reset the DOM
         while (document.body.firstChild) {
             document.body.removeChild(document.body.firstChild)
         }
+        jest.clearAllMocks()
     })
 
     async function flushPromises() {
         return Promise.resolve()
     }
-
 
     describe('synchronous process bindings retrieved', () => {
         it('displays expected values on After', async () => {
@@ -36,22 +47,31 @@ describe('c-domain-process-binding-viewer', () => {
             })
             element.triggerOperation = 'After_Update'
             document.body.appendChild(element)
-    
+
             getDomainProcessBindings.emit(mockGetDomainProcessBindings)
-    
+
             await flushPromises()
 
             const h4El = element.shadowRoot.querySelector('h4')
             expect(h4El.textContent).toBe('Record After Save')
 
-            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll('c-domain-process-binding-list-item')
+            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll(
+                'c-domain-process-binding-list-item'
+            )
             expect(domainProcessBindingListItemEls.length).toBe(mockGetDomainProcessBindings.length)
-            for (let [index, domainProcessBindingListItemEl] of domainProcessBindingListItemEls.entries()) {
-                expect(domainProcessBindingListItemEl.record.Id).toBe(mockGetDomainProcessBindings[index].Id)
+            for (let [
+                index,
+                domainProcessBindingListItemEl,
+            ] of domainProcessBindingListItemEls.entries()) {
+                expect(domainProcessBindingListItemEl.record.Id).toBe(
+                    mockGetDomainProcessBindings[index].Id
+                )
             }
 
             const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
-            expect(listLengthSpanEl.textContent).toBe(`${mockGetDomainProcessBindings.length} Item(s)`)
+            expect(listLengthSpanEl.textContent).toBe(
+                `${mockGetDomainProcessBindings.length} Item(s)`
+            )
 
             const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
             expect(noItemsPEl).toBeNull()
@@ -62,22 +82,31 @@ describe('c-domain-process-binding-viewer', () => {
             })
             element.triggerOperation = 'Before_Insert'
             document.body.appendChild(element)
-    
+
             getDomainProcessBindings.emit(mockGetDomainProcessBindings)
-    
+
             await flushPromises()
 
             const h4El = element.shadowRoot.querySelector('h4')
             expect(h4El.textContent).toBe('Record Before Save')
 
-            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll('c-domain-process-binding-list-item')
+            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll(
+                'c-domain-process-binding-list-item'
+            )
             expect(domainProcessBindingListItemEls.length).toBe(mockGetDomainProcessBindings.length)
-            for (let [index, domainProcessBindingListItemEl] of domainProcessBindingListItemEls.entries()) {
-                expect(domainProcessBindingListItemEl.record.Id).toBe(mockGetDomainProcessBindings[index].Id)
+            for (let [
+                index,
+                domainProcessBindingListItemEl,
+            ] of domainProcessBindingListItemEls.entries()) {
+                expect(domainProcessBindingListItemEl.record.Id).toBe(
+                    mockGetDomainProcessBindings[index].Id
+                )
             }
 
             const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
-            expect(listLengthSpanEl.textContent).toBe(`${mockGetDomainProcessBindings.length} Item(s)`)
+            expect(listLengthSpanEl.textContent).toBe(
+                `${mockGetDomainProcessBindings.length} Item(s)`
+            )
 
             const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
             expect(noItemsPEl).toBeNull()
@@ -92,22 +121,33 @@ describe('c-domain-process-binding-viewer', () => {
             element.triggerOperation = 'After_Update'
             element.isAsync = true
             document.body.appendChild(element)
-    
+
             getDomainProcessBindings.emit(mockGetDomainProcessBindingsAsync)
-    
+
             await flushPromises()
 
             const h4El = element.shadowRoot.querySelector('h4')
             expect(h4El.textContent).toBe('Run Asynchronously')
 
-            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll('c-domain-process-binding-list-item')
-            expect(domainProcessBindingListItemEls.length).toBe(mockGetDomainProcessBindingsAsync.length)
-            for (let [index, domainProcessBindingListItemEl] of domainProcessBindingListItemEls.entries()) {
-                expect(domainProcessBindingListItemEl.record.Id).toBe(mockGetDomainProcessBindingsAsync[index].Id)
+            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll(
+                'c-domain-process-binding-list-item'
+            )
+            expect(domainProcessBindingListItemEls.length).toBe(
+                mockGetDomainProcessBindingsAsync.length
+            )
+            for (let [
+                index,
+                domainProcessBindingListItemEl,
+            ] of domainProcessBindingListItemEls.entries()) {
+                expect(domainProcessBindingListItemEl.record.Id).toBe(
+                    mockGetDomainProcessBindingsAsync[index].Id
+                )
             }
 
             const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
-            expect(listLengthSpanEl.textContent).toBe(`${mockGetDomainProcessBindingsAsync.length} Item(s)`)
+            expect(listLengthSpanEl.textContent).toBe(
+                `${mockGetDomainProcessBindingsAsync.length} Item(s)`
+            )
 
             const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
             expect(noItemsPEl).toBeNull()
@@ -131,6 +171,35 @@ describe('c-domain-process-binding-viewer', () => {
         })
     })
 
+    describe('RefreshBindings called', () => {
+        const EMPTY_WIRE = { data: undefined, error: undefined }
+        it('calls refreshApex on empty wire by default', async () => {
+            const element = createElement('c-domain-process-binding-viewer', {
+                is: DomainProcessBindingViewer,
+            })
+            document.body.appendChild(element)
+
+            element.refreshBindings()
+
+            expect(refreshApex).toHaveBeenCalledTimes(1)
+            expect(refreshApex).toHaveBeenCalledWith(EMPTY_WIRE)
+        })
+        it('calls refreshApex on wire', async () => {
+            const element = createElement('c-domain-process-binding-viewer', {
+                is: DomainProcessBindingViewer,
+            })
+            element.triggerOperation = 'After_Update'
+            document.body.appendChild(element)
+
+            getDomainProcessBindings.emit(mockGetDomainProcessBindings)
+
+            element.refreshBindings()
+
+            expect(refreshApex).toHaveBeenCalledTimes(1)
+            expect(refreshApex).not.toHaveBeenCalledWith(EMPTY_WIRE) //TODO: find better way to verify if it's calling expected wire
+        })
+    })
+
     it('uses default values', async () => {
         const element = createElement('c-domain-process-binding-viewer', {
             is: DomainProcessBindingViewer,
@@ -144,7 +213,9 @@ describe('c-domain-process-binding-viewer', () => {
         const h4El = element.shadowRoot.querySelector('h4')
         expect(h4El.textContent).toBe('Record Before Save')
 
-        const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll('c-domain-process-binding-list-item')
+        const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll(
+            'c-domain-process-binding-list-item'
+        )
         expect(domainProcessBindingListItemEls.length).toBe(0)
 
         const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
