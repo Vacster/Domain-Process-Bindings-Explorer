@@ -18,6 +18,10 @@ export default class DomainBindingsExplorer extends LightningElement {
         this._triggerOperation = event.detail
     }
 
+    handleRefreshCalled() {
+        this.template.querySelectorAll('c-domain-process-binding-viewer')?.forEach(viewerEl => viewerEl.refreshBindings())
+    }
+
     get selectedSObjectDeveloperName() {
         return this._selectedSObjectDeveloperName
     }
