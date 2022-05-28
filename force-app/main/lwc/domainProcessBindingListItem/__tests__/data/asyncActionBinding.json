@@ -1,0 +1,9 @@
+{
+  "DeveloperName": "Action_Test",
+  "ExecuteAsynchronous__c": true,
+  "Id": "m041j000000M6OxAA0",
+  "IsActive__c": true,
+  "MasterLabel": "Async Action Test",
+  "OrderOfExecution__c": 1.1,
+  "Type__c": "Action"
+}

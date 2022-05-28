@@ -2,7 +2,7 @@
 
 This is a project that helps you easily visualize (and soon manage) your AT4DX Domain Process Binding Custom Metadata records through a Lightning Web Component.
 
-![Screenshot of LWC](media/basicview.png)
+![Screenshot of LWC](https://raw.githubusercontent.com/Vacster/Domain-Process-Bindings-Explorer/master/media/basicview.png)
 
 # Contribution Guidelines
 
@@ -13,7 +13,7 @@ If you're looking for ideas on something to work on feel free to [check out the 
 For a Pull Request to be accepted, any new code must be tested (>85% coverage) and documented:
 
 - In the case of Apex code it must follow [ApexDoc](https://github.com/SalesforceFoundation/ApexDoc)
-- In the case of Javascript in Lightning Web Components it must follow [JSDoc](https://jsdoc.app/)
+- In the case of Javascript in Lightning Web Components it must follow [JSDoc](https://jsdoc.app/) *for public properties only*
 
 Lightning Web Components are tested using Jest with [@salesforce/sfdx-lwc-jest](https://github.com/salesforce/sfdx-lwc-jest)
 

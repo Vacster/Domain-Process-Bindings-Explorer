@@ -32,14 +32,14 @@ describe('c-domain-process-bindings-filter', () => {
                 is: DomainProcessBindingsFilter,
             })
             const handler = jest.fn()
-            element.addEventListener('objectchanged', handler)
+            element.addEventListener('object_changed', handler)
             document.body.appendChild(element)
 
             const entityDefinitionSelectorEl = element.shadowRoot.querySelector(
                 'c-entity-definition-selector'
             )
             entityDefinitionSelectorEl.dispatchEvent(
-                new CustomEvent('objectchanged', {
+                new CustomEvent('object_changed', {
                     detail: MOCK_SOBJECT_DEVELOPER_NAME,
                 })
             )

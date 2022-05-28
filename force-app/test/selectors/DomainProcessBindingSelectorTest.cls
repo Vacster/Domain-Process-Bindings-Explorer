@@ -6,9 +6,8 @@
  */
 @IsTest
 private class DomainProcessBindingSelectorTest {
-    
     /**
-     * Following the example from this blog post: 
+     * Following the example from this blog post:
      * https://developer.salesforce.com/blogs/engineering/2015/05/testing-custom-metadata-types
      */
     private static final String TEST_CRITERIA_RECORD_DEVELOPER_NAME = 'DPBE_SelectorCriteriaTestRecord';
@@ -93,7 +92,7 @@ private class DomainProcessBindingSelectorTest {
     }
 
     @IsTest
-    private static void selectByRelatedDomainBindingSObjectTriggerOperationAndAsyncShouldReturnExpectedRecords() {
+    private static void selectByRelatedDomainBindingSObjectTriggerOperationShouldReturnExpectedRecords() {
         // prepare
         Map<Id, DomainProcessBinding__mdt> existingDomainProcessBindings = new Map<Id, DomainProcessBinding__mdt>(
             [
@@ -106,10 +105,9 @@ private class DomainProcessBindingSelectorTest {
         // exercise
         Test.startTest();
         List<DomainProcessBinding__mdt> returnedDomainProcessBindings = new DomainProcessBindingSelector()
-            .selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+            .selectByRelatedDomainBindingSObjectTriggerOperation(
                 DomainProcessBinding__mdt.SObjectType.getDescribe().getName(),
-                'Before_Insert',
-                false
+                'Before_Insert'
             );
         Test.stopTest();
 
@@ -138,6 +136,10 @@ private class DomainProcessBindingSelectorTest {
         Test.stopTest();
 
         // validate
-        System.assertEquals(expectedOrderByValue, returnedOrderByValue, 'Expected Ascending order by OrderOfExecution__c field');
+        System.assertEquals(
+            expectedOrderByValue,
+            returnedOrderByValue,
+            'Expected Ascending order by OrderOfExecution__c field'
+        );
     }
 }

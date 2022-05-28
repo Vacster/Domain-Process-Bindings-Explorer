@@ -1,0 +1,47 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["force-app/main/lwc"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "default": {
+      "outputSourceFiles": false
+    },
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "template": "node_modules/clean-jsdoc-theme",
+    "destination": "docs",
+    "recurse": true,
+    "readme": "README.md",
+    "theme_opts": {
+      "theme": "dark",
+      "sections": ["Classes", "Menu"],
+      "resizeable": {
+        "navbar": {
+          "min": "250",
+          "max": "350"
+        }
+      },
+      "menu": [
+        {
+          "title": "GitHub Repo ⬀",
+          "link": "https://github.com/Vacster/Domain-Process-Bindings-Explorer",
+          "target": "_blank"
+        },
+        {
+          "title": "AT4DX Repo ⬀",
+          "link": "https://github.com/apex-enterprise-patterns/at4dx",
+          "target": "_blank"
+        }
+      ]
+    }
+  }
+}

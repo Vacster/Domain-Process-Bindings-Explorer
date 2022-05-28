@@ -6,18 +6,19 @@
  */
 @IsTest
 private class DomainBindingExplorerControllerTest {
-
     private static final fflib_ApexMocks MOCKS = new fflib_ApexMocks();
 
     @IsTest
     private static void getEntityDefinitionsShouldReturnEntityDefinitions() {
         // prepare
-        final List<EntityDefinition> mockEntityDefinitions = new List<EntityDefinition> {
+        final List<EntityDefinition> mockEntityDefinitions = new List<EntityDefinition>{
             new EntityDefinition(Id = fflib_IDGenerator.generate(EntityDefinition.SObjectType))
         };
 
         // mock
-        IEntityDefinitionsSelector entityDefinitionsSelectorMock = (IEntityDefinitionsSelector) MOCKS.mock(IEntityDefinitionsSelector.class);
+        IEntityDefinitionsSelector entityDefinitionsSelectorMock = (IEntityDefinitionsSelector) MOCKS.mock(
+            IEntityDefinitionsSelector.class
+        );
         MOCKS.startStubbing();
         MOCKS.when(entityDefinitionsSelectorMock.sObjectType()).thenReturn(EntityDefinition.SObjectType);
         MOCKS.when(entityDefinitionsSelectorMock.selectByApexTriggerable(true)).thenReturn(mockEntityDefinitions);
@@ -30,7 +31,11 @@ private class DomainBindingExplorerControllerTest {
         Test.stopTest();
 
         // validate
-        System.assertEquals(mockEntityDefinitions.size(), returnedEntityDefinitions.size(), 'Returned Entity Definitions size should match');
+        System.assertEquals(
+            mockEntityDefinitions.size(),
+            returnedEntityDefinitions.size(),
+            'Returned Entity Definitions size should match'
+        );
     }
 
     @IsTest
@@ -39,7 +44,9 @@ private class DomainBindingExplorerControllerTest {
         Exception exceptionToThrow = new System.QueryException('This is an error message');
 
         // mock
-        IEntityDefinitionsSelector entityDefinitionsSelectorMock = (IEntityDefinitionsSelector) MOCKS.mock(IEntityDefinitionsSelector.class);
+        IEntityDefinitionsSelector entityDefinitionsSelectorMock = (IEntityDefinitionsSelector) MOCKS.mock(
+            IEntityDefinitionsSelector.class
+        );
         MOCKS.startStubbing();
         MOCKS.when(entityDefinitionsSelectorMock.sObjectType()).thenReturn(EntityDefinition.SObjectType);
         MOCKS.when(entityDefinitionsSelectorMock.selectByApexTriggerable(true)).thenThrow(exceptionToThrow);
@@ -58,8 +65,15 @@ private class DomainBindingExplorerControllerTest {
 
         // validate
         System.assertNotEquals(null, caughtException, 'An exception should have been thrown and caught');
-        System.assert(caughtException instanceof AuraHandledException, 'Caught exception should be an instance of AuraHandledException');
-        System.assertEquals(exceptionToThrow.getMessage(), caughtException.getMessage(), 'Caught Exception Message should match message from original exception');
+        System.assert(
+            caughtException instanceof AuraHandledException,
+            'Caught exception should be an instance of AuraHandledException'
+        );
+        System.assertEquals(
+            exceptionToThrow.getMessage(),
+            caughtException.getMessage(),
+            'Caught Exception Message should match message from original exception'
+        );
     }
 
     @IsTest
@@ -67,35 +81,44 @@ private class DomainBindingExplorerControllerTest {
         // prepare
         final String sObjectDeveloperName = 'PotatoDeveloperName';
         final String triggerOperation = 'Before_Insert';
-        final Boolean isAsync = false;
-        final List<DomainProcessBinding__mdt> mockDomainProcessBindings = new List<DomainProcessBinding__mdt> {
+        final List<DomainProcessBinding__mdt> mockDomainProcessBindings = new List<DomainProcessBinding__mdt>{
             new DomainProcessBinding__mdt(
                 Id = fflib_IDGenerator.generate(DomainProcessBinding__mdt.SObjectType),
                 RelatedDomainBindingSObjectAlternate__c = sObjectDeveloperName,
-                TriggerOperation__c = triggerOperation,
-                ExecuteAsynchronous__c = isAsync
+                TriggerOperation__c = triggerOperation
             )
         };
 
         // mock
-        IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(IDomainProcessBindingSelector.class);
+        IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(
+            IDomainProcessBindingSelector.class
+        );
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
-            sObjectDeveloperName, triggerOperation, isAsync
-        )).thenReturn(mockDomainProcessBindings);
+        MOCKS.when(
+                domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
+                    sObjectDeveloperName,
+                    triggerOperation
+                )
+            )
+            .thenReturn(mockDomainProcessBindings);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
 
         // exercise
         Test.startTest();
         final List<DomainProcessBinding__mdt> returnedDomainProcessBindings = DomainBindingExplorerController.getDomainProcessBindings(
-            sObjectDeveloperName, triggerOperation, isAsync
+            sObjectDeveloperName,
+            triggerOperation
         );
         Test.stopTest();
 
         // validate
-        System.assertEquals(mockDomainProcessBindings.size(), returnedDomainProcessBindings.size(), 'Returned Domain Process Bindings size should match');
+        System.assertEquals(
+            mockDomainProcessBindings.size(),
+            returnedDomainProcessBindings.size(),
+            'Returned Domain Process Bindings size should match'
+        );
     }
 
     @IsTest
@@ -104,14 +127,18 @@ private class DomainBindingExplorerControllerTest {
         Exception exceptionToThrow = new System.QueryException('This is an error message');
 
         // mock
-        IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(IDomainProcessBindingSelector.class);
+        IDomainProcessBindingSelector domainProcessBindingsSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(
+            IDomainProcessBindingSelector.class
+        );
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
-            fflib_Match.anyString(),
-            fflib_Match.anyString(),
-            fflib_Match.anyBoolean()
-        )).thenThrow(exceptionToThrow);
+        MOCKS.when(
+                domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
+                    fflib_Match.anyString(),
+                    fflib_Match.anyString()
+                )
+            )
+            .thenThrow(exceptionToThrow);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
 
@@ -121,8 +148,7 @@ private class DomainBindingExplorerControllerTest {
         try {
             final List<DomainProcessBinding__mdt> returnedEntityDefinitions = DomainBindingExplorerController.getDomainProcessBindings(
                 'these values do not matter',
-                'for this specific test',
-                false
+                'for this specific test'
             );
         } catch (Exception e) {
             caughtException = e;
@@ -131,7 +157,14 @@ private class DomainBindingExplorerControllerTest {
 
         // validate
         System.assertNotEquals(null, caughtException, 'An exception should have been thrown and caught');
-        System.assert(caughtException instanceof AuraHandledException, 'Caught exception should be an instance of AuraHandledException');
-        System.assertEquals(exceptionToThrow.getMessage(), caughtException.getMessage(), 'Caught Exception Message should match message from original exception');
+        System.assert(
+            caughtException instanceof AuraHandledException,
+            'Caught exception should be an instance of AuraHandledException'
+        );
+        System.assertEquals(
+            exceptionToThrow.getMessage(),
+            caughtException.getMessage(),
+            'Caught Exception Message should match message from original exception'
+        );
     }
 }

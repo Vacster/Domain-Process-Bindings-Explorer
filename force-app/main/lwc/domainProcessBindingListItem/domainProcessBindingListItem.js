@@ -9,10 +9,23 @@ import { NavigationMixin } from 'lightning/navigation'
 
 export const ICON_NAME_BY_BINDING_TYPE = {
     Action: 'standard:invocable_action',
-    Criteria: 'standard:activations',
+    Criteria: 'standard:filter_criteria_rule',
 }
 
+/**
+ * Displays information regarding a single Domain Process Binding record
+ *
+ * @alias DomainProcessBindingListItem
+ * @hideconstructor
+ *
+ * @example
+ * <c-domain-process-binding-list-item record={domainProcessBinding}></c-domain-process-binding-list-item>
+ */
 export default class DomainProcessBindingListItem extends NavigationMixin(LightningElement) {
+    /**
+     * A Domain process Binding record
+     * @type {DomainProcessBinding}
+     */
     @api record
 
     async navigateToRecord(event) {
@@ -53,8 +66,11 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
         return this.record?.OrderOfExecution__c
     }
 
+    get isAsync() {
+        return this.record?.ExecuteAsynchronous__c
+    }
+
     get iconName() {
         return ICON_NAME_BY_BINDING_TYPE[this.record?.Type__c]
     }
-
 }
