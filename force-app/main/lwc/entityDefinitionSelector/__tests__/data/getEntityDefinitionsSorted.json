@@ -1,602 +1,602 @@
 [
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Account",
-        "Label": "Account",
-        "DurableId": "Account"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "AccountChangeEvent",
-        "Label": "Account Change Event",
-        "DurableId": "AccountChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "AccountContactRelation",
-        "Label": "Account Contact Relationship",
-        "DurableId": "AccountContactRelation"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "AccountContactRoleChangeEvent",
-        "Label": "Account Contact Role Change Event",
-        "DurableId": "AccountContactRoleChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Asset",
-        "Label": "Asset",
-        "DurableId": "Asset"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "AssetChangeEvent",
-        "Label": "Asset Change Event",
-        "DurableId": "AssetChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "AssociatedLocation",
-        "Label": "Associated Location",
-        "DurableId": "AssociatedLocation"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Attachment",
-        "Label": "Attachment",
-        "DurableId": "Attachment"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Campaign",
-        "Label": "Campaign",
-        "DurableId": "Campaign"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CampaignChangeEvent",
-        "Label": "Campaign Change Event",
-        "DurableId": "CampaignChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CampaignInfluence",
-        "Label": "Campaign Influence",
-        "DurableId": "CampaignInfluence"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CampaignMember",
-        "Label": "Campaign Member",
-        "DurableId": "CampaignMember"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CampaignMemberChangeEvent",
-        "Label": "Campaign Member Change Event",
-        "DurableId": "CampaignMemberChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CampaignMemberStatusChangeEvent",
-        "Label": "Campaign Member Status Change Event",
-        "DurableId": "CampaignMemberStatusChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Case",
-        "Label": "Case",
-        "DurableId": "Case"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CaseChangeEvent",
-        "Label": "Case Change Event",
-        "DurableId": "CaseChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CaseComment",
-        "Label": "Case Comment",
-        "DurableId": "CaseComment"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LiveChatTranscript",
-        "Label": "Chat Transcript",
-        "DurableId": "LiveChatTranscript"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LiveChatTranscriptChangeEvent",
-        "Label": "Chat Transcript Change Event",
-        "DurableId": "LiveChatTranscriptChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LiveChatTranscriptEvent",
-        "Label": "Chat Transcript Event",
-        "DurableId": "LiveChatTranscriptEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LiveChatVisitor",
-        "Label": "Chat Visitor",
-        "DurableId": "LiveChatVisitor"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ChatterActivity",
-        "Label": "Chatter Activity",
-        "DurableId": "ChatterActivity"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ChatterMessage",
-        "Label": "Chatter Message",
-        "DurableId": "ChatterMessage"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Contact",
-        "Label": "Contact",
-        "DurableId": "Contact"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContactChangeEvent",
-        "Label": "Contact Change Event",
-        "DurableId": "ContactChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContentDistribution",
-        "Label": "Content Delivery",
-        "DurableId": "ContentDistribution"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContentDocument",
-        "Label": "Content Document",
-        "DurableId": "ContentDocument"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContentDocumentLink",
-        "Label": "Content Document Link",
-        "DurableId": "ContentDocumentLink"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContentVersion",
-        "Label": "Content Version",
-        "DurableId": "ContentVersion"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Contract",
-        "Label": "Contract",
-        "DurableId": "Contract"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContractChangeEvent",
-        "Label": "Contract Change Event",
-        "DurableId": "ContractChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContractLineItem",
-        "Label": "Contract Line Item",
-        "DurableId": "ContractLineItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ContractLineItemChangeEvent",
-        "Label": "Contract Line Item Change Event",
-        "DurableId": "ContractLineItemChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EmailMessage",
-        "Label": "Email Message",
-        "DurableId": "EmailMessage"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EmailMessageChangeEvent",
-        "Label": "Email Message Change Event",
-        "DurableId": "EmailMessageChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EmailTemplateChangeEvent",
-        "Label": "Email Template Change Event",
-        "DurableId": "EmailTemplateChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Entitlement",
-        "Label": "Entitlement",
-        "DurableId": "Entitlement"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EntitlementChangeEvent",
-        "Label": "Entitlement Change Event",
-        "DurableId": "EntitlementChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EntitlementContact",
-        "Label": "Entitlement Contact",
-        "DurableId": "EntitlementContact"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Event",
-        "Label": "Event",
-        "DurableId": "Event"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EventChangeEvent",
-        "Label": "Event Change Event",
-        "DurableId": "EventChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EventRelationChangeEvent",
-        "Label": "Event Relation Change Event",
-        "DurableId": "EventRelationChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "FeedComment",
-        "Label": "Feed Comment",
-        "DurableId": "FeedComment"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "FeedItem",
-        "Label": "Feed Item",
-        "DurableId": "FeedItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CollaborationGroup",
-        "Label": "Group",
-        "DurableId": "CollaborationGroup"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CollaborationGroupMember",
-        "Label": "Group Member",
-        "DurableId": "CollaborationGroupMember"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "CollaborationGroupRecord",
-        "Label": "Group Record",
-        "DurableId": "CollaborationGroupRecord"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Idea",
-        "Label": "Idea",
-        "DurableId": "Idea"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "IdeaComment",
-        "Label": "Idea Comment",
-        "DurableId": "IdeaComment"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Individual",
-        "Label": "Individual",
-        "DurableId": "Individual"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "IndividualChangeEvent",
-        "Label": "Individual Change Event",
-        "DurableId": "IndividualChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Lead",
-        "Label": "Lead",
-        "DurableId": "Lead"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LeadChangeEvent",
-        "Label": "Lead Change Event",
-        "DurableId": "LeadChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LinkedArticle",
-        "Label": "Linked Article",
-        "DurableId": "LinkedArticle"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Location",
-        "Label": "Location",
-        "DurableId": "Location"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "LocationChangeEvent",
-        "Label": "Location Change Event",
-        "DurableId": "LocationChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Macro",
-        "Label": "Macro",
-        "DurableId": "Macro"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "MacroChangeEvent",
-        "Label": "Macro Change Event",
-        "DurableId": "MacroChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "MacroInstructionChangeEvent",
-        "Label": "Macro Instruction Change Event",
-        "DurableId": "MacroInstructionChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "NetworkMember",
-        "Label": "Network Member",
-        "DurableId": "NetworkMember"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Note",
-        "Label": "Note",
-        "DurableId": "Note"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "EntityMilestone",
-        "Label": "Object Milestone",
-        "DurableId": "EntityMilestone"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Opportunity",
-        "Label": "Opportunity",
-        "DurableId": "Opportunity"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OpportunityChangeEvent",
-        "Label": "Opportunity Change Event",
-        "DurableId": "OpportunityChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OpportunityContactRole",
-        "Label": "Opportunity Contact Role",
-        "DurableId": "OpportunityContactRole"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OpportunityContactRoleChangeEvent",
-        "Label": "Opportunity Contact Role Change Event",
-        "DurableId": "OpportunityContactRoleChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OpportunityLineItem",
-        "Label": "Opportunity Product",
-        "DurableId": "OpportunityLineItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OpportunityTeamMember",
-        "Label": "Opportunity Team Member",
-        "DurableId": "OpportunityTeamMember"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Order",
-        "Label": "Order",
-        "DurableId": "Order"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OrderChangeEvent",
-        "Label": "Order Change Event",
-        "DurableId": "OrderChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OrderItem",
-        "Label": "Order Product",
-        "DurableId": "OrderItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "OrderItemChangeEvent",
-        "Label": "Order Product Change Event",
-        "DurableId": "OrderItemChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Partner",
-        "Label": "Partner",
-        "DurableId": "Partner"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Pricebook2",
-        "Label": "Price Book",
-        "DurableId": "Pricebook2"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Pricebook2ChangeEvent",
-        "Label": "Price Book Change Event",
-        "DurableId": "Pricebook2ChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Product2",
-        "Label": "Product",
-        "DurableId": "Product2"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Product2ChangeEvent",
-        "Label": "Product Change Event",
-        "DurableId": "Product2ChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "QuickText",
-        "Label": "Quick Text",
-        "DurableId": "QuickText"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "QuickTextChangeEvent",
-        "Label": "Quick Text Change Event",
-        "DurableId": "QuickTextChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Quote",
-        "Label": "Quote",
-        "DurableId": "Quote"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "QuoteChangeEvent",
-        "Label": "Quote Change Event",
-        "DurableId": "QuoteChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "QuoteLineItem",
-        "Label": "Quote Line Item",
-        "DurableId": "QuoteLineItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "QuoteLineItemChangeEvent",
-        "Label": "Quote Line Item Change Event",
-        "DurableId": "QuoteLineItemChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ServiceContract",
-        "Label": "Service Contract",
-        "DurableId": "ServiceContract"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ServiceContractChangeEvent",
-        "Label": "Service Contract Change Event",
-        "DurableId": "ServiceContractChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ServiceResource",
-        "Label": "Service Resource",
-        "DurableId": "ServiceResource"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "ServiceResourceChangeEvent",
-        "Label": "Service Resource Change Event",
-        "DurableId": "ServiceResourceChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "SkillChangeEvent",
-        "Label": "Skill Change Event",
-        "DurableId": "SkillChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Solution",
-        "Label": "Solution",
-        "DurableId": "Solution"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "StreamingChannel",
-        "Label": "Streaming Channel",
-        "DurableId": "StreamingChannel"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Task",
-        "Label": "Task",
-        "DurableId": "Task"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "TaskChangeEvent",
-        "Label": "Task Change Event",
-        "DurableId": "TaskChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "Topic",
-        "Label": "Topic",
-        "DurableId": "Topic"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "TopicAssignment",
-        "Label": "Topic Assignment",
-        "DurableId": "TopicAssignment"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "User",
-        "Label": "User",
-        "DurableId": "User"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "UserChangeEvent",
-        "Label": "User Change Event",
-        "DurableId": "UserChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "WorkOrder",
-        "Label": "Work Order",
-        "DurableId": "WorkOrder"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "WorkOrderChangeEvent",
-        "Label": "Work Order Change Event",
-        "DurableId": "WorkOrderChangeEvent"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "WorkOrderLineItem",
-        "Label": "Work Order Line Item",
-        "DurableId": "WorkOrderLineItem"
-    },
-    {
-        "Id": "000000000000000AAA",
-        "DeveloperName": "WorkOrderLineItemChangeEvent",
-        "Label": "Work Order Line Item Change Event",
-        "DurableId": "WorkOrderLineItemChangeEvent"
-    }
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Account",
+    "Label": "Account",
+    "DurableId": "Account"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "AccountChangeEvent",
+    "Label": "Account Change Event",
+    "DurableId": "AccountChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "AccountContactRelation",
+    "Label": "Account Contact Relationship",
+    "DurableId": "AccountContactRelation"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "AccountContactRoleChangeEvent",
+    "Label": "Account Contact Role Change Event",
+    "DurableId": "AccountContactRoleChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Asset",
+    "Label": "Asset",
+    "DurableId": "Asset"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "AssetChangeEvent",
+    "Label": "Asset Change Event",
+    "DurableId": "AssetChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "AssociatedLocation",
+    "Label": "Associated Location",
+    "DurableId": "AssociatedLocation"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Attachment",
+    "Label": "Attachment",
+    "DurableId": "Attachment"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Campaign",
+    "Label": "Campaign",
+    "DurableId": "Campaign"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CampaignChangeEvent",
+    "Label": "Campaign Change Event",
+    "DurableId": "CampaignChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CampaignInfluence",
+    "Label": "Campaign Influence",
+    "DurableId": "CampaignInfluence"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CampaignMember",
+    "Label": "Campaign Member",
+    "DurableId": "CampaignMember"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CampaignMemberChangeEvent",
+    "Label": "Campaign Member Change Event",
+    "DurableId": "CampaignMemberChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CampaignMemberStatusChangeEvent",
+    "Label": "Campaign Member Status Change Event",
+    "DurableId": "CampaignMemberStatusChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Case",
+    "Label": "Case",
+    "DurableId": "Case"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CaseChangeEvent",
+    "Label": "Case Change Event",
+    "DurableId": "CaseChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CaseComment",
+    "Label": "Case Comment",
+    "DurableId": "CaseComment"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LiveChatTranscript",
+    "Label": "Chat Transcript",
+    "DurableId": "LiveChatTranscript"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LiveChatTranscriptChangeEvent",
+    "Label": "Chat Transcript Change Event",
+    "DurableId": "LiveChatTranscriptChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LiveChatTranscriptEvent",
+    "Label": "Chat Transcript Event",
+    "DurableId": "LiveChatTranscriptEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LiveChatVisitor",
+    "Label": "Chat Visitor",
+    "DurableId": "LiveChatVisitor"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ChatterActivity",
+    "Label": "Chatter Activity",
+    "DurableId": "ChatterActivity"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ChatterMessage",
+    "Label": "Chatter Message",
+    "DurableId": "ChatterMessage"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Contact",
+    "Label": "Contact",
+    "DurableId": "Contact"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContactChangeEvent",
+    "Label": "Contact Change Event",
+    "DurableId": "ContactChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContentDistribution",
+    "Label": "Content Delivery",
+    "DurableId": "ContentDistribution"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContentDocument",
+    "Label": "Content Document",
+    "DurableId": "ContentDocument"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContentDocumentLink",
+    "Label": "Content Document Link",
+    "DurableId": "ContentDocumentLink"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContentVersion",
+    "Label": "Content Version",
+    "DurableId": "ContentVersion"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Contract",
+    "Label": "Contract",
+    "DurableId": "Contract"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContractChangeEvent",
+    "Label": "Contract Change Event",
+    "DurableId": "ContractChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContractLineItem",
+    "Label": "Contract Line Item",
+    "DurableId": "ContractLineItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ContractLineItemChangeEvent",
+    "Label": "Contract Line Item Change Event",
+    "DurableId": "ContractLineItemChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EmailMessage",
+    "Label": "Email Message",
+    "DurableId": "EmailMessage"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EmailMessageChangeEvent",
+    "Label": "Email Message Change Event",
+    "DurableId": "EmailMessageChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EmailTemplateChangeEvent",
+    "Label": "Email Template Change Event",
+    "DurableId": "EmailTemplateChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Entitlement",
+    "Label": "Entitlement",
+    "DurableId": "Entitlement"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EntitlementChangeEvent",
+    "Label": "Entitlement Change Event",
+    "DurableId": "EntitlementChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EntitlementContact",
+    "Label": "Entitlement Contact",
+    "DurableId": "EntitlementContact"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Event",
+    "Label": "Event",
+    "DurableId": "Event"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EventChangeEvent",
+    "Label": "Event Change Event",
+    "DurableId": "EventChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EventRelationChangeEvent",
+    "Label": "Event Relation Change Event",
+    "DurableId": "EventRelationChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "FeedComment",
+    "Label": "Feed Comment",
+    "DurableId": "FeedComment"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "FeedItem",
+    "Label": "Feed Item",
+    "DurableId": "FeedItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CollaborationGroup",
+    "Label": "Group",
+    "DurableId": "CollaborationGroup"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CollaborationGroupMember",
+    "Label": "Group Member",
+    "DurableId": "CollaborationGroupMember"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "CollaborationGroupRecord",
+    "Label": "Group Record",
+    "DurableId": "CollaborationGroupRecord"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Idea",
+    "Label": "Idea",
+    "DurableId": "Idea"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "IdeaComment",
+    "Label": "Idea Comment",
+    "DurableId": "IdeaComment"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Individual",
+    "Label": "Individual",
+    "DurableId": "Individual"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "IndividualChangeEvent",
+    "Label": "Individual Change Event",
+    "DurableId": "IndividualChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Lead",
+    "Label": "Lead",
+    "DurableId": "Lead"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LeadChangeEvent",
+    "Label": "Lead Change Event",
+    "DurableId": "LeadChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LinkedArticle",
+    "Label": "Linked Article",
+    "DurableId": "LinkedArticle"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Location",
+    "Label": "Location",
+    "DurableId": "Location"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "LocationChangeEvent",
+    "Label": "Location Change Event",
+    "DurableId": "LocationChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Macro",
+    "Label": "Macro",
+    "DurableId": "Macro"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "MacroChangeEvent",
+    "Label": "Macro Change Event",
+    "DurableId": "MacroChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "MacroInstructionChangeEvent",
+    "Label": "Macro Instruction Change Event",
+    "DurableId": "MacroInstructionChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "NetworkMember",
+    "Label": "Network Member",
+    "DurableId": "NetworkMember"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Note",
+    "Label": "Note",
+    "DurableId": "Note"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "EntityMilestone",
+    "Label": "Object Milestone",
+    "DurableId": "EntityMilestone"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Opportunity",
+    "Label": "Opportunity",
+    "DurableId": "Opportunity"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OpportunityChangeEvent",
+    "Label": "Opportunity Change Event",
+    "DurableId": "OpportunityChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OpportunityContactRole",
+    "Label": "Opportunity Contact Role",
+    "DurableId": "OpportunityContactRole"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OpportunityContactRoleChangeEvent",
+    "Label": "Opportunity Contact Role Change Event",
+    "DurableId": "OpportunityContactRoleChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OpportunityLineItem",
+    "Label": "Opportunity Product",
+    "DurableId": "OpportunityLineItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OpportunityTeamMember",
+    "Label": "Opportunity Team Member",
+    "DurableId": "OpportunityTeamMember"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Order",
+    "Label": "Order",
+    "DurableId": "Order"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OrderChangeEvent",
+    "Label": "Order Change Event",
+    "DurableId": "OrderChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OrderItem",
+    "Label": "Order Product",
+    "DurableId": "OrderItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "OrderItemChangeEvent",
+    "Label": "Order Product Change Event",
+    "DurableId": "OrderItemChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Partner",
+    "Label": "Partner",
+    "DurableId": "Partner"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Pricebook2",
+    "Label": "Price Book",
+    "DurableId": "Pricebook2"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Pricebook2ChangeEvent",
+    "Label": "Price Book Change Event",
+    "DurableId": "Pricebook2ChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Product2",
+    "Label": "Product",
+    "DurableId": "Product2"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Product2ChangeEvent",
+    "Label": "Product Change Event",
+    "DurableId": "Product2ChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "QuickText",
+    "Label": "Quick Text",
+    "DurableId": "QuickText"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "QuickTextChangeEvent",
+    "Label": "Quick Text Change Event",
+    "DurableId": "QuickTextChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Quote",
+    "Label": "Quote",
+    "DurableId": "Quote"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "QuoteChangeEvent",
+    "Label": "Quote Change Event",
+    "DurableId": "QuoteChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "QuoteLineItem",
+    "Label": "Quote Line Item",
+    "DurableId": "QuoteLineItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "QuoteLineItemChangeEvent",
+    "Label": "Quote Line Item Change Event",
+    "DurableId": "QuoteLineItemChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ServiceContract",
+    "Label": "Service Contract",
+    "DurableId": "ServiceContract"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ServiceContractChangeEvent",
+    "Label": "Service Contract Change Event",
+    "DurableId": "ServiceContractChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ServiceResource",
+    "Label": "Service Resource",
+    "DurableId": "ServiceResource"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "ServiceResourceChangeEvent",
+    "Label": "Service Resource Change Event",
+    "DurableId": "ServiceResourceChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "SkillChangeEvent",
+    "Label": "Skill Change Event",
+    "DurableId": "SkillChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Solution",
+    "Label": "Solution",
+    "DurableId": "Solution"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "StreamingChannel",
+    "Label": "Streaming Channel",
+    "DurableId": "StreamingChannel"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Task",
+    "Label": "Task",
+    "DurableId": "Task"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "TaskChangeEvent",
+    "Label": "Task Change Event",
+    "DurableId": "TaskChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "Topic",
+    "Label": "Topic",
+    "DurableId": "Topic"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "TopicAssignment",
+    "Label": "Topic Assignment",
+    "DurableId": "TopicAssignment"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "User",
+    "Label": "User",
+    "DurableId": "User"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "UserChangeEvent",
+    "Label": "User Change Event",
+    "DurableId": "UserChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "WorkOrder",
+    "Label": "Work Order",
+    "DurableId": "WorkOrder"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "WorkOrderChangeEvent",
+    "Label": "Work Order Change Event",
+    "DurableId": "WorkOrderChangeEvent"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "WorkOrderLineItem",
+    "Label": "Work Order Line Item",
+    "DurableId": "WorkOrderLineItem"
+  },
+  {
+    "Id": "000000000000000AAA",
+    "DeveloperName": "WorkOrderLineItemChangeEvent",
+    "Label": "Work Order Line Item Change Event",
+    "DurableId": "WorkOrderLineItemChangeEvent"
+  }
 ]

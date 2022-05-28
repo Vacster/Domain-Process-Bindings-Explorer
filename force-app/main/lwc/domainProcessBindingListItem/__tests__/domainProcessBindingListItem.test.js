@@ -29,11 +29,13 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="binding-type-icon"]'
+            )
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockActionBinding.Type__c]
             )
-        })        
+        })
         it('displays expected criteria icon on Criteria Binding', async () => {
             const element = createElement('c-domain-process-binding-list-item', {
                 is: DomainProcessBindingListItem,
@@ -41,7 +43,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockCriteriaBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="binding-type-icon"]'
+            )
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockCriteriaBinding.Type__c]
             )
@@ -65,7 +69,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="async-icon"]'
+            )
             expect(lightningIconEl).toBeNull()
         })
         it('displays async icon on async record', async () => {
@@ -75,7 +81,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockAsyncActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="async-icon"]'
+            )
             expect(lightningIconEl).not.toBeNull()
         })
         it('displays expected classes in badge on active record', async () => {
@@ -85,7 +93,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector('span[data-id="badge-label"]')
+            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector(
+                'span[data-id="badge-label"]'
+            )
             expect(activeBadgeLabelSpanEl.classList).toContain('slds-badge_lightest')
             for (let currentClass of EXPECTED_BADGE_CLASSES) {
                 expect(activeBadgeLabelSpanEl.classList).toContain(currentClass)
@@ -98,7 +108,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector('span[data-id="badge-label"]')
+            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector(
+                'span[data-id="badge-label"]'
+            )
             expect(activeBadgeLabelSpanEl.textContent).toBe('Active')
         })
         it('displays expected classes in badge on inactive record', async () => {
@@ -108,7 +120,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockInactiveActionBinding
             document.body.appendChild(element)
 
-            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector('span[data-id="badge-label"]')
+            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector(
+                'span[data-id="badge-label"]'
+            )
             expect(activeBadgeLabelSpanEl.classList).not.toContain('slds-badge_lightest')
             for (let currentClass of EXPECTED_BADGE_CLASSES) {
                 expect(activeBadgeLabelSpanEl.classList).toContain(currentClass)
@@ -121,7 +135,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockInactiveActionBinding
             document.body.appendChild(element)
 
-            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector('span[data-id="badge-label"]')
+            const activeBadgeLabelSpanEl = element.shadowRoot.querySelector(
+                'span[data-id="badge-label"]'
+            )
             expect(activeBadgeLabelSpanEl.textContent).toBe('Inactive')
         })
         it('opens a link when record name clicked', async () => {
@@ -130,18 +146,18 @@ describe('c-domain-process-binding-list-item', () => {
             })
             element.record = mockInactiveActionBinding
             document.body.appendChild(element)
-            
+
             let spy = jest.spyOn(window, 'open')
             spy.mockImplementation(() => {})
 
             const aEl = element.shadowRoot.querySelector('a')
             aEl.click()
-            
+
             await flushPromises()
 
             expect(spy).toHaveBeenCalled()
             //TODO: Can we verify that window.open was called with the binding Id?
-            
+
             spy.mockRestore()
         })
     })

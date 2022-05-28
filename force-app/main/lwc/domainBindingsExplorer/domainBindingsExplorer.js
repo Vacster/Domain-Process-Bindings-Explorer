@@ -6,6 +6,15 @@
  */
 import { LightningElement } from 'lwc'
 
+/**
+ * Displays information regarding an org's Domain Process Bindings. Allows filtering by specific SObject and Trigger Operation
+ *
+ * @alias DomainBindingsExplorer
+ * @hideconstructor
+ *
+ * @example
+ * <c-domain-process-bindings-explorer></c-domain-process-bindings-explorer>
+ */
 export default class DomainBindingsExplorer extends LightningElement {
     _selectedSObjectDeveloperName = 'Account'
     _triggerOperation = 'create'
@@ -19,7 +28,9 @@ export default class DomainBindingsExplorer extends LightningElement {
     }
 
     handleRefreshCalled() {
-        this.template.querySelectorAll('c-domain-process-binding-viewer')?.forEach(viewerEl => viewerEl.refreshBindings())
+        this.template
+            .querySelectorAll('c-domain-process-binding-viewer')
+            ?.forEach((viewerEl) => viewerEl.refreshBindings())
     }
 
     get selectedSObjectDeveloperName() {

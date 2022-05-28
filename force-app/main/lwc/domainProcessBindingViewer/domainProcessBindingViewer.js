@@ -9,18 +9,46 @@ import { api, LightningElement, wire } from 'lwc'
 import { refreshApex } from '@salesforce/apex'
 import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
 
+/**
+ * Displays a list of Domain Process Bindings that fit the criteria passed through this component's public properties
+ *
+ * @alias DomainProcessBindingViewer
+ * @hideconstructor
+ *
+ * @example
+ * <c-domain-process-binding-viewer
+ *      selected-sobject-developer-name='Potato__c'
+ *      trigger-operation="Before_Update"
+ * ></c-domain-process-binding-viewer>
+ */
 export default class DomainProcessBindingViewer extends LightningElement {
+    /**
+     * Determines the DeveloperName of the Related Domain SObject Binding
+     * @type {String}
+     * @default 'Account'
+     */
     @api selectedSObjectDeveloperName = 'Account'
 
+    /**
+     * Determines when a binding occurs
+     * @type {DomainProcessBindingViewer~TriggerOperationType}
+     * @default 'Before_Insert'
+     */
     @api triggerOperation = 'Before_Insert'
 
+    /**
+     * Refreshes the Domain Process Binding records
+     * @function refreshBindings
+     * @instance
+     * @memberof DomainProcessBindingViewer
+     */
     @api refreshBindings() {
         refreshApex(this.domainProcessBindings)
     }
 
     @wire(getDomainProcessBindings, {
         sObjectDeveloperName: '$selectedSObjectDeveloperName',
-        triggerOperation: '$triggerOperation'
+        triggerOperation: '$triggerOperation',
     })
     domainProcessBindings
 
@@ -46,3 +74,8 @@ export default class DomainProcessBindingViewer extends LightningElement {
         return this.domainProcessBindings?.data?.length ?? 0
     }
 }
+
+/**
+ * A String representation of the possible Trigger Operation for a Domain Process Binding
+ * @typedef {'Before_Insert'|'After_Insert'|'Before_Update'|'After_Update'|'Before_Delete'|'After_Delete'} DomainProcessBindingViewer~TriggerOperationType
+ */

@@ -7,6 +7,17 @@
 import { LightningElement, wire } from 'lwc'
 import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerController.getEntityDefinitions'
 
+/**
+ * Simple popover selector that allows a user to choose any EntityDefinition record that is Apex Triggerable
+ *
+ * @alias EntityDefinitionSelector
+ * @hideconstructor
+ *
+ * @fires EntityDefinitionSelector#object_changed
+ *
+ * @example
+ * <c-entity-definition-selector onobject_changed={handleObjectChanged}></c-entity-definition-selector>
+ */
 export default class EntityDefinitionSelector extends LightningElement {
     _entityDefinitions = []
     _selectedSObjectDeveloperName = ''
@@ -27,8 +38,9 @@ export default class EntityDefinitionSelector extends LightningElement {
     handleObjectChange(event) {
         this._selectedSObjectDeveloperName = event.detail.value
         this._displayPopover = false
+
         this.dispatchEvent(
-            new CustomEvent('objectchanged', {
+            new CustomEvent('object_changed', {
                 detail: this._selectedSObjectDeveloperName,
             })
         )
@@ -56,3 +68,12 @@ export default class EntityDefinitionSelector extends LightningElement {
         return this._selectedSObjectDeveloperName
     }
 }
+
+/**
+ * SObject selected has changed
+ *
+ * @memberof EntityDefinitionSelector
+ * @event EntityDefinitionSelector#object_changed
+ * @type {CustomEvent}
+ * @property {String} detail - the selected SObject's DeveloperName
+ */

@@ -1,0 +1,13 @@
+# ignore sfdx files
+**/.sfdx/**
+
+# ignore generated doc files
+**/docs/**
+
+# ignore reports
+**/coverage/**
+
+# xml files
+**/*.xml
+
+README.md

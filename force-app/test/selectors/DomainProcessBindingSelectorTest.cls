@@ -6,9 +6,8 @@
  */
 @IsTest
 private class DomainProcessBindingSelectorTest {
-    
     /**
-     * Following the example from this blog post: 
+     * Following the example from this blog post:
      * https://developer.salesforce.com/blogs/engineering/2015/05/testing-custom-metadata-types
      */
     private static final String TEST_CRITERIA_RECORD_DEVELOPER_NAME = 'DPBE_SelectorCriteriaTestRecord';
@@ -137,6 +136,10 @@ private class DomainProcessBindingSelectorTest {
         Test.stopTest();
 
         // validate
-        System.assertEquals(expectedOrderByValue, returnedOrderByValue, 'Expected Ascending order by OrderOfExecution__c field');
+        System.assertEquals(
+            expectedOrderByValue,
+            returnedOrderByValue,
+            'Expected Ascending order by OrderOfExecution__c field'
+        );
     }
 }
