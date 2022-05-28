@@ -16,8 +16,12 @@ export default class DomainProcessBindingViewer extends LightningElement {
 
     @api isAsync = false
 
-    @api refreshBindings() {
-        refreshApex(this.domainProcessBindings)
+    _isLoading = false
+
+    @api async refreshBindings() {
+        this._isLoading = true
+        await refreshApex(this.domainProcessBindings)
+        this._isLoading = false
     }
 
     @wire(getDomainProcessBindings, {
@@ -46,10 +50,18 @@ export default class DomainProcessBindingViewer extends LightningElement {
 
     //TODO: Figures out why this line method does not show up as covered during jest tests
     get domainProcessBindingsList() {
-        return this.domainProcessBindings?.data ?? []
+        let domainProcessBindings = this.domainProcessBindings?.data
+        if (domainProcessBindings !== undefined) {
+            return domainProcessBindings
+        }
+        return []
     }
 
     get domainProcessBindingsListLength() {
         return this.domainProcessBindings?.data?.length ?? 0
+    }
+
+    get isLoading() {
+        return !this.domainProcessBindings.data || this._isLoading
     }
 }
