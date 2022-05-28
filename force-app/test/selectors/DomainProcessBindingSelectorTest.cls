@@ -92,7 +92,7 @@ private class DomainProcessBindingSelectorTest {
     }
 
     @IsTest
-    private static void selectByRelatedDomainBindingSObjectTriggerOperationAndAsyncShouldReturnExpectedRecords() {
+    private static void selectByRelatedDomainBindingSObjectTriggerOperationShouldReturnExpectedRecords() {
         // prepare
         Map<Id, DomainProcessBinding__mdt> existingDomainProcessBindings = new Map<Id, DomainProcessBinding__mdt>(
             [
@@ -105,10 +105,9 @@ private class DomainProcessBindingSelectorTest {
         // exercise
         Test.startTest();
         List<DomainProcessBinding__mdt> returnedDomainProcessBindings = new DomainProcessBindingSelector()
-            .selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+            .selectByRelatedDomainBindingSObjectTriggerOperation(
                 DomainProcessBinding__mdt.SObjectType.getDescribe().getName(),
-                'Before_Insert',
-                false
+                'Before_Insert'
             );
         Test.stopTest();
 

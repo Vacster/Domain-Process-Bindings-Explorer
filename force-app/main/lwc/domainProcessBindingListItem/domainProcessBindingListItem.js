@@ -9,7 +9,7 @@ import { NavigationMixin } from 'lightning/navigation'
 
 export const ICON_NAME_BY_BINDING_TYPE = {
     Action: 'standard:invocable_action',
-    Criteria: 'standard:activations',
+    Criteria: 'standard:filter_criteria_rule',
 }
 
 /**
@@ -66,6 +66,10 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
         return this.record?.OrderOfExecution__c
     }
 
+    get isAsync() {
+        return this.record?.ExecuteAsynchronous__c
+    }
+    
     get iconName() {
         return ICON_NAME_BY_BINDING_TYPE[this.record?.Type__c]
     }
