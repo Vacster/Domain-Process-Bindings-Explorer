@@ -4,6 +4,7 @@ import { ICON_NAME_BY_BINDING_TYPE } from 'c/domainProcessBindingListItem'
 
 const mockActionBinding = require('./data/actionBinding.json')
 const mockCriteriaBinding = require('./data/criteriaBinding.json')
+const mockAsyncActionBinding = require('./data/asyncActionBinding.json')
 const mockInactiveActionBinding = require('./data/inactiveActionBinding.json')
 
 describe('c-domain-process-binding-list-item', () => {
@@ -28,7 +29,7 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon')
+            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockActionBinding.Type__c]
             )
@@ -40,7 +41,7 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockCriteriaBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon')
+            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockCriteriaBinding.Type__c]
             )
@@ -56,6 +57,26 @@ describe('c-domain-process-binding-list-item', () => {
                 'lightning-formatted-number'
             )
             expect(lightningFormattedNumberEl.value).toBe(mockActionBinding.OrderOfExecution__c)
+        })
+        it('does not display async icon on non-async record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            expect(lightningIconEl).toBeNull()
+        })
+        it('displays async icon on async record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockAsyncActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            expect(lightningIconEl).not.toBeNull()
         })
         it('displays expected classes in badge on active record', async () => {
             const element = createElement('c-domain-process-binding-list-item', {

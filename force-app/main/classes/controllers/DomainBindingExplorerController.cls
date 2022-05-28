@@ -31,7 +31,6 @@ public with sharing class DomainBindingExplorerController {
      *                             fields in the DomainProcessBinding__mdt records
      * @param triggerOperation the Trigger Operation that matches the TriggerOperation__c field in the
      *                         DomainProcessBinding__mdt records
-     * @param isAsync if the DomainProcessBinding__mdt records Execute Asynchronously or not
      *
      * @return a list of all DomainProcessBinding__mdt records that meet the criterium
      *
@@ -40,22 +39,19 @@ public with sharing class DomainBindingExplorerController {
      * @example
      * DomainBindingExplorerController.getDomainProcessBindings(
      *     'Account',
-     *     'Before_Insert',
-     *      false
+     *     'Before_Insert'
      * );
      */
     @AuraEnabled(Cacheable=true)
     public static List<DomainProcessBinding__mdt> getDomainProcessBindings(
         final String sObjectDeveloperName,
-        final String triggerOperation,
-        final Boolean isAsync
+        final String triggerOperation
     ) {
         try {
             return DomainProcessBindingSelector.newInstance()
-                .selectByRelatedDomainBindingSObjectTriggerOperationAndAsync(
+                .selectByRelatedDomainBindingSObjectTriggerOperation(
                     sObjectDeveloperName,
-                    triggerOperation,
-                    isAsync
+                    triggerOperation
                 );
         } catch (Exception e) {
             AuraHandledException convertedException = new AuraHandledException(e.getMessage());

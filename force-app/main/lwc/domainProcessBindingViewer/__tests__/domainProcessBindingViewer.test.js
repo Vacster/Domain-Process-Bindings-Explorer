@@ -4,7 +4,6 @@ import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerCont
 import DomainProcessBindingViewer from 'c/domainProcessBindingViewer'
 
 const mockGetDomainProcessBindings = require('./data/getDomainProcessBindings.json')
-const mockGetDomainProcessBindingsAsync = require('./data/getDomainProcessBindingsAsync.json')
 
 jest.mock(
     '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings',
@@ -110,93 +109,6 @@ describe('c-domain-process-binding-viewer', () => {
 
             const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
             expect(noItemsPEl).toBeNull()
-        })
-    })
-
-    describe('asynchronoius process bindings retrieved', () => {
-        it('displays expected values on After Async', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            element.triggerOperation = 'After_Update'
-            element.isAsync = true
-            document.body.appendChild(element)
-
-            getDomainProcessBindings.emit(mockGetDomainProcessBindingsAsync)
-
-            await flushPromises()
-
-            const h4El = element.shadowRoot.querySelector('h4')
-            expect(h4El.textContent).toBe('Run Asynchronously')
-
-            const domainProcessBindingListItemEls = element.shadowRoot.querySelectorAll(
-                'c-domain-process-binding-list-item'
-            )
-            expect(domainProcessBindingListItemEls.length).toBe(
-                mockGetDomainProcessBindingsAsync.length
-            )
-            for (let [
-                index,
-                domainProcessBindingListItemEl,
-            ] of domainProcessBindingListItemEls.entries()) {
-                expect(domainProcessBindingListItemEl.record.Id).toBe(
-                    mockGetDomainProcessBindingsAsync[index].Id
-                )
-            }
-
-            const listLengthSpanEl = element.shadowRoot.querySelector('span[data-id="list-length"]')
-            expect(listLengthSpanEl.textContent).toBe(
-                `${mockGetDomainProcessBindingsAsync.length} Item(s)`
-            )
-
-            const noItemsPEl = element.shadowRoot.querySelector('p[data-id="no-items-text"]')
-            expect(noItemsPEl).toBeNull()
-        })
-        it('throws error on impossible Before Async', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            element.triggerOperation = 'Before_Insert'
-            element.isAsync = true
-
-            let caughtError = null
-            try {
-                document.body.appendChild(element)
-            } catch (error) {
-                caughtError = error
-            }
-
-            expect(caughtError).not.toBeNull()
-            expect(caughtError.message).toBe('Impossible State Found: Before + Async')
-        })
-    })
-
-    describe('RefreshBindings called', () => {
-        const EMPTY_WIRE = { data: undefined, error: undefined }
-        it('calls refreshApex on empty wire by default', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            document.body.appendChild(element)
-
-            element.refreshBindings()
-
-            expect(refreshApex).toHaveBeenCalledTimes(1)
-            expect(refreshApex).toHaveBeenCalledWith(EMPTY_WIRE)
-        })
-        it('calls refreshApex on wire', async () => {
-            const element = createElement('c-domain-process-binding-viewer', {
-                is: DomainProcessBindingViewer,
-            })
-            element.triggerOperation = 'After_Update'
-            document.body.appendChild(element)
-
-            getDomainProcessBindings.emit(mockGetDomainProcessBindings)
-
-            element.refreshBindings()
-
-            expect(refreshApex).toHaveBeenCalledTimes(1)
-            expect(refreshApex).not.toHaveBeenCalledWith(EMPTY_WIRE) //TODO: find better way to verify if it's calling expected wire
         })
     })
 
