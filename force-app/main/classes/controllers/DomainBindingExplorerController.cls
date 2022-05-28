@@ -49,10 +49,7 @@ public with sharing class DomainBindingExplorerController {
     ) {
         try {
             return DomainProcessBindingSelector.newInstance()
-                .selectByRelatedDomainBindingSObjectTriggerOperation(
-                    sObjectDeveloperName,
-                    triggerOperation
-                );
+                .selectByRelatedDomainBindingSObjectTriggerOperation(sObjectDeveloperName, triggerOperation);
         } catch (Exception e) {
             AuraHandledException convertedException = new AuraHandledException(e.getMessage());
             convertedException.setMessage(e.getMessage());

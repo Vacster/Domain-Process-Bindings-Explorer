@@ -30,7 +30,7 @@
           "max": "350"
         }
       },
-      "menu" : [
+      "menu": [
         {
           "title": "GitHub Repo ⬀",
           "link": "https://github.com/Vacster/Domain-Process-Bindings-Explorer",

@@ -48,7 +48,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
 
     @wire(getDomainProcessBindings, {
         sObjectDeveloperName: '$selectedSObjectDeveloperName',
-        triggerOperation: '$triggerOperation'
+        triggerOperation: '$triggerOperation',
     })
     domainProcessBindings
 

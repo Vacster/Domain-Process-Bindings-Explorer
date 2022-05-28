@@ -9,7 +9,7 @@ import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerControll
 
 /**
  * Simple popover selector that allows a user to choose any EntityDefinition record that is Apex Triggerable
- * 
+ *
  * @alias EntityDefinitionSelector
  * @hideconstructor
  *
@@ -68,7 +68,6 @@ export default class EntityDefinitionSelector extends LightningElement {
         return this._selectedSObjectDeveloperName
     }
 }
-
 
 /**
  * SObject selected has changed

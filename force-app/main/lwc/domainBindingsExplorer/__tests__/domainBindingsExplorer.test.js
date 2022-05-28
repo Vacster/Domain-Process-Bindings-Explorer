@@ -35,7 +35,7 @@ describe('c-domain-bindings-explorer', () => {
                 'c-domain-process-binding-viewer'
             )
             expect(domainProcessBindingsViewerEls.length).toBe(2)
-  
+
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Update')
             expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
 
@@ -98,12 +98,16 @@ describe('c-domain-bindings-explorer', () => {
                 'c-domain-process-binding-viewer'
             )
             expect(domainProcessBindingsViewerEls.length).toBe(2)
-    
+
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Insert')
-            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe(SOBJECT_DEVELOPER_NAME)
-    
-            expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Insert') 
-            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe(SOBJECT_DEVELOPER_NAME)
+            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe(
+                SOBJECT_DEVELOPER_NAME
+            )
+
+            expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Insert')
+            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe(
+                SOBJECT_DEVELOPER_NAME
+            )
         })
     })
 

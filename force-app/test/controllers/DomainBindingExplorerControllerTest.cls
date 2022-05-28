@@ -81,7 +81,7 @@ private class DomainBindingExplorerControllerTest {
         // prepare
         final String sObjectDeveloperName = 'PotatoDeveloperName';
         final String triggerOperation = 'Before_Insert';
-        final List<DomainProcessBinding__mdt> mockDomainProcessBindings = new List<DomainProcessBinding__mdt> {
+        final List<DomainProcessBinding__mdt> mockDomainProcessBindings = new List<DomainProcessBinding__mdt>{
             new DomainProcessBinding__mdt(
                 Id = fflib_IDGenerator.generate(DomainProcessBinding__mdt.SObjectType),
                 RelatedDomainBindingSObjectAlternate__c = sObjectDeveloperName,
@@ -95,16 +95,21 @@ private class DomainBindingExplorerControllerTest {
         );
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
-            sObjectDeveloperName, triggerOperation
-        )).thenReturn(mockDomainProcessBindings);
+        MOCKS.when(
+                domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
+                    sObjectDeveloperName,
+                    triggerOperation
+                )
+            )
+            .thenReturn(mockDomainProcessBindings);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
 
         // exercise
         Test.startTest();
         final List<DomainProcessBinding__mdt> returnedDomainProcessBindings = DomainBindingExplorerController.getDomainProcessBindings(
-            sObjectDeveloperName, triggerOperation
+            sObjectDeveloperName,
+            triggerOperation
         );
         Test.stopTest();
 
@@ -127,10 +132,13 @@ private class DomainBindingExplorerControllerTest {
         );
         MOCKS.startStubbing();
         MOCKS.when(domainProcessBindingsSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
-        MOCKS.when(domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
-            fflib_Match.anyString(),
-            fflib_Match.anyString()
-        )).thenThrow(exceptionToThrow);
+        MOCKS.when(
+                domainProcessBindingsSelectorMock.selectByRelatedDomainBindingSObjectTriggerOperation(
+                    fflib_Match.anyString(),
+                    fflib_Match.anyString()
+                )
+            )
+            .thenThrow(exceptionToThrow);
         MOCKS.stopStubbing();
         Application.Selector.setMock(domainProcessBindingsSelectorMock);
 

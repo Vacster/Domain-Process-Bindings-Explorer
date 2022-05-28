@@ -29,7 +29,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="binding-type-icon"]'
+            )
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockActionBinding.Type__c]
             )
@@ -41,7 +43,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockCriteriaBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="binding-type-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="binding-type-icon"]'
+            )
             expect(lightningIconEl.iconName).toBe(
                 ICON_NAME_BY_BINDING_TYPE[mockCriteriaBinding.Type__c]
             )
@@ -65,7 +69,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="async-icon"]'
+            )
             expect(lightningIconEl).toBeNull()
         })
         it('displays async icon on async record', async () => {
@@ -75,7 +81,9 @@ describe('c-domain-process-binding-list-item', () => {
             element.record = mockAsyncActionBinding
             document.body.appendChild(element)
 
-            const lightningIconEl = element.shadowRoot.querySelector('lightning-icon[data-id="async-icon"]')
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="async-icon"]'
+            )
             expect(lightningIconEl).not.toBeNull()
         })
         it('displays expected classes in badge on active record', async () => {

@@ -52,9 +52,7 @@ export default class DomainProcessBindingsFilter extends LightningElement {
     }
 
     handleRefresh() {
-        this.dispatchEvent(
-            new CustomEvent('refresh')
-        )
+        this.dispatchEvent(new CustomEvent('refresh'))
     }
 
     get possibleActions() {
