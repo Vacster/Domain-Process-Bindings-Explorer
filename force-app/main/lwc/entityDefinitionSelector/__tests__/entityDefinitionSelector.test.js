@@ -132,7 +132,9 @@ describe('c-entity-definition-selector', () => {
 
             await flushPromises()
 
-            const objectLabelEl = element.shadowRoot.querySelector('b[data-id="selected-object-label"]')
+            const objectLabelEl = element.shadowRoot.querySelector(
+                'b[data-id="selected-object-label"]'
+            )
             expect(objectLabelEl.textContent).toBe(MOCK_SOBJECT_LABEL)
         })
     })
