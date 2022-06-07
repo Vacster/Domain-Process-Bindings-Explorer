@@ -35,7 +35,6 @@ describe('c-entity-definition-selector', () => {
             })
             document.body.appendChild(element)
 
-            // emit data from @wire
             getEntityDefinitions.emit(mockGetEntityDefinitions)
 
             await flushPromises()
@@ -53,7 +52,9 @@ describe('c-entity-definition-selector', () => {
     })
 
     describe('handleObjectChange', () => {
-        const MOCK_SOBJECT_DEVELOPER_NAME = 'Potato__c'
+        // mock values exist in getEntityDefinitions.json
+        const MOCK_SOBJECT_DEVELOPER_NAME = 'OrderItemChangeEvent'
+        const MOCK_SOBJECT_LABEL = 'Order Product Change Event'
         it('sends out objectChanged event with expected detail', async () => {
             const element = createElement('c-entity-definition-selector', {
                 is: EntityDefinitionSelector,
@@ -113,6 +114,28 @@ describe('c-entity-definition-selector', () => {
             await flushPromises()
 
             expect(sectionEl.classList).toContain('slds-popover_hide')
+        })
+        it('displays expected label', async () => {
+            const element = createElement('c-entity-definition-selector', {
+                is: EntityDefinitionSelector,
+            })
+            document.body.appendChild(element)
+
+            getEntityDefinitions.emit(mockGetEntityDefinitions)
+
+            const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
+            lightningComboboxEl.dispatchEvent(
+                new CustomEvent('change', {
+                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
+                })
+            )
+
+            await flushPromises()
+
+            const objectLabelEl = element.shadowRoot.querySelector(
+                'b[data-id="selected-object-label"]'
+            )
+            expect(objectLabelEl.textContent).toBe(MOCK_SOBJECT_LABEL)
         })
     })
 

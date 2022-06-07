@@ -21,6 +21,7 @@ import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerControll
 export default class EntityDefinitionSelector extends LightningElement {
     _entityDefinitions = []
     _selectedSObjectDeveloperName = ''
+    _selectedSObjectLabel = ''
     _displayPopover = false
 
     @wire(getEntityDefinitions)
@@ -29,19 +30,19 @@ export default class EntityDefinitionSelector extends LightningElement {
             this._entityDefinitions = [...value.data].sort((a, b) => {
                 return a.Label.localeCompare(b.Label)
             })
-            if (!this._selectedSObjectDeveloperName) {
-                this._selectedSObjectDeveloperName = this._entityDefinitions[0].DeveloperName
+            if (!this.selectedSObjectDeveloperName) {
+                this.selectedSObjectDeveloperName = this._entityDefinitions[0].DeveloperName
             }
         }
     }
 
     handleObjectChange(event) {
-        this._selectedSObjectDeveloperName = event.detail.value
+        this.selectedSObjectDeveloperName = event.detail.value
         this._displayPopover = false
 
         this.dispatchEvent(
             new CustomEvent('object_changed', {
-                detail: this._selectedSObjectDeveloperName,
+                detail: this.selectedSObjectDeveloperName,
             })
         )
     }
@@ -64,8 +65,19 @@ export default class EntityDefinitionSelector extends LightningElement {
         return defaultClasses
     }
 
+    get selectedSObjectLabel() {
+        return this._selectedSObjectLabel
+    }
+
     get selectedSObjectDeveloperName() {
         return this._selectedSObjectDeveloperName
+    }
+
+    set selectedSObjectDeveloperName(value) {
+        this._selectedSObjectDeveloperName = value
+        this._selectedSObjectLabel = this.options.find(
+            (element) => element.value === this._selectedSObjectDeveloperName
+        )?.label
     }
 }
 
