@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { api, LightningElement, wire } from 'lwc'
+import { api, LightningElement, track, wire } from 'lwc'
 import { refreshApex } from '@salesforce/apex'
 import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getDomainProcessBindings'
 
@@ -22,21 +22,46 @@ import getDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerCont
  * ></c-domain-process-binding-viewer>
  */
 export default class DomainProcessBindingViewer extends LightningElement {
+
+    @track _loadingElements = {
+        bindings: true,
+        triggerOperation: true,
+        selectedSObjectDeveloperName: true
+    }
+
     /**
      * Determines the DeveloperName of the Related Domain SObject Binding
-     * @type {String}
+     * @param {String} value
      * @default 'Account'
-     */
-    @api selectedSObjectDeveloperName = 'Account'
+     */ 
+    set selectedSObjectDeveloperName(value) {
+        this._loadingElements.selectedSObjectDeveloperName = true
+        this._selectedSObjectDeveloperName = value
+    }
+    
+    @api
+    get selectedSObjectDeveloperName() {
+        return this._selectedSObjectDeveloperName
+    }
+
+    _selectedSObjectDeveloperName = 'Account'
 
     /**
      * Determines when a binding occurs
-     * @type {DomainProcessBindingViewer~TriggerOperationType}
+     * @param {TriggerOperationType} value
      * @default 'Before_Insert'
      */
-    @api triggerOperation = 'Before_Insert'
+    set triggerOperation(value) {
+        this._loadingElements.triggerOperation = true
+        this._triggerOperation = value
+    }
 
-    _isLoading = false
+    @api 
+    get triggerOperation() {
+        return this._triggerOperation
+    }
+    
+    _triggerOperation = 'Before_Insert'
 
     /**
      * Refreshes the Domain Process Binding records
@@ -45,16 +70,30 @@ export default class DomainProcessBindingViewer extends LightningElement {
      * @memberof DomainProcessBindingViewer
      */
     @api async refreshBindings() {
-        this._isLoading = true
-        await refreshApex(this.domainProcessBindings)
-        this._isLoading = false
+        this._loadingElements.bindings = true
+        // We want a minimum of 300ms to show that a loading was attempted, only used for UX
+        await Promise.all([
+            refreshApex(this._domainProcessBindingsWire),
+            new Promise(resolve => {
+                // eslint-disable-next-line @lwc/lwc/no-async-operation
+                setTimeout(resolve, 300)
+            })
+        ])
+        this._loadingElements.bindings = false
     }
+
+    _domainProcessBindingsWire = {data: undefined, error: undefined}
 
     @wire(getDomainProcessBindings, {
         sObjectDeveloperName: '$selectedSObjectDeveloperName',
         triggerOperation: '$triggerOperation',
     })
-    domainProcessBindings
+    domainProcessBindings(value) {
+        this._domainProcessBindingsWire = value
+        this._loadingElements.bindings = false
+        this._loadingElements.selectedSObjectDeveloperName = false
+        this._loadingElements.triggerOperation = false
+    }
 
     get calculatedTitle() {
         let title = ''
@@ -69,9 +108,9 @@ export default class DomainProcessBindingViewer extends LightningElement {
         return title
     }
 
-    //TODO: Figures out why this line method does not show up as covered during jest tests
+    //TODO: Figure out why this line method does not show up as covered during jest tests
     get domainProcessBindingsList() {
-        let domainProcessBindings = this.domainProcessBindings?.data
+        let domainProcessBindings = this._domainProcessBindingsWire?.data
         if (domainProcessBindings !== undefined) {
             return domainProcessBindings
         }
@@ -79,15 +118,15 @@ export default class DomainProcessBindingViewer extends LightningElement {
     }
 
     get domainProcessBindingsListLength() {
-        return this.domainProcessBindings?.data?.length ?? 0
+        return this._domainProcessBindingsWire?.data?.length ?? 0
     }
 
     get isLoading() {
-        return !this.domainProcessBindings.data || this._isLoading
+        return Object.values(this._loadingElements).some((element) => element)
     }
 }
 
 /**
  * A String representation of the possible Trigger Operation for a Domain Process Binding
- * @typedef {'Before_Insert'|'After_Insert'|'Before_Update'|'After_Update'|'Before_Delete'|'After_Delete'} DomainProcessBindingViewer~TriggerOperationType
+ * @typedef {'Before_Insert'|'After_Insert'|'Before_Update'|'After_Update'|'Before_Delete'|'After_Delete'} TriggerOperationType
  */
