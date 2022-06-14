@@ -31,7 +31,7 @@ export default class EntityDefinitionSelector extends LightningElement {
                 return a.Label.localeCompare(b.Label)
             })
             if (!this.selectedSObjectDeveloperName) {
-                this.selectedSObjectDeveloperName = this._entityDefinitions[0].DeveloperName
+                this.selectedSObjectDeveloperName = this._entityDefinitions[0].QualifiedApiName
             }
         }
     }
@@ -39,12 +39,6 @@ export default class EntityDefinitionSelector extends LightningElement {
     handleObjectChange(event) {
         this.selectedSObjectDeveloperName = event.detail.value
         this._displayPopover = false
-
-        this.dispatchEvent(
-            new CustomEvent('object_changed', {
-                detail: this.selectedSObjectDeveloperName,
-            })
-        )
     }
 
     displayToolbar() {
@@ -53,7 +47,7 @@ export default class EntityDefinitionSelector extends LightningElement {
 
     get options() {
         return this._entityDefinitions.map((entityDefinition) => {
-            return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
+            return { value: entityDefinition.QualifiedApiName, label: entityDefinition.Label }
         })
     }
 
@@ -75,9 +69,13 @@ export default class EntityDefinitionSelector extends LightningElement {
 
     set selectedSObjectDeveloperName(value) {
         this._selectedSObjectDeveloperName = value
-        this._selectedSObjectLabel = this.options.find(
-            (element) => element.value === this._selectedSObjectDeveloperName
-        )?.label
+        this._selectedSObjectLabel = this.options.find((element) => element.value === value)?.label
+
+        this.dispatchEvent(
+            new CustomEvent('object_changed', {
+                detail: value,
+            })
+        )
     }
 }
 

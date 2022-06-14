@@ -40,7 +40,7 @@ describe('c-entity-definition-selector', () => {
             await flushPromises()
 
             const lightningCombobox = element.shadowRoot.querySelector('lightning-combobox')
-            expect(lightningCombobox.value).toBe(mockGetEntityDefinitionsSorted[0].DeveloperName)
+            expect(lightningCombobox.value).toBe(mockGetEntityDefinitionsSorted[0].QualifiedApiName)
 
             const expectedOptions = mockGetEntityDefinitionsSorted.map((entityDefinition) => {
                 return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }

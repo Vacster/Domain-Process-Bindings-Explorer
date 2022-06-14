@@ -16,7 +16,7 @@ import { LightningElement } from 'lwc'
  * <c-domain-process-bindings-explorer></c-domain-process-bindings-explorer>
  */
 export default class DomainBindingsExplorer extends LightningElement {
-    _selectedSObjectDeveloperName = 'Account'
+    _selectedSObjectDeveloperName = ''
     _triggerOperation = 'create'
 
     handleObjectChanged(event) {

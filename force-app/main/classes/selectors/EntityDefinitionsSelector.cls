@@ -10,7 +10,12 @@ public inherited sharing class EntityDefinitionsSelector extends ApplicationSObj
     }
 
     public override List<Schema.SObjectField> getSObjectFieldList() {
-        return new List<Schema.SObjectField>{ EntityDefinition.Id, EntityDefinition.DeveloperName, EntityDefinition.Label };
+        return new List<Schema.SObjectField>{
+            EntityDefinition.Id,
+            EntityDefinition.DeveloperName,
+            EntityDefinition.QualifiedApiName,
+            EntityDefinition.Label
+        };
     }
 
     @TestVisible

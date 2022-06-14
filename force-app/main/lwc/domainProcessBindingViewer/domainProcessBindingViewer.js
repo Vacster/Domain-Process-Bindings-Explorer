@@ -25,9 +25,9 @@ export default class DomainProcessBindingViewer extends LightningElement {
     /**
      * Determines the DeveloperName of the Related Domain SObject Binding
      * @type {String}
-     * @default 'Account'
+     * @default ''
      */
-    @api selectedSObjectDeveloperName = 'Account'
+    @api selectedSObjectDeveloperName = ''
 
     /**
      * Determines when a binding occurs
@@ -65,7 +65,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
         return title
     }
 
-    //TODO: Figures out why this line method does not show up as covered during jest tests
+    //TODO: Figure out why this line method does not show up as covered during jest tests
     get domainProcessBindingsList() {
         return this.domainProcessBindings?.data ?? []
     }

@@ -77,6 +77,42 @@ private class DomainBindingExplorerControllerTest {
     }
 
     @IsTest
+    private static void getDomainProcessBindingsShouldEmptyDomainProcessBindingsOnMissingSObjectDeveloperName() {
+        // prepare
+        final String sObjectDeveloperName = null;
+        final String triggerOperation = 'Before_Insert';
+
+        // exercise
+        Test.startTest();
+        final List<DomainProcessBinding__mdt> returnedDomainProcessBindings = DomainBindingExplorerController.getDomainProcessBindings(
+            sObjectDeveloperName,
+            triggerOperation
+        );
+        Test.stopTest();
+
+        // validate
+        System.assert(returnedDomainProcessBindings.isEmpty(), 'Returned Domain Process Bindings should be empty');
+    }
+
+    @IsTest
+    private static void getDomainProcessBindingsShouldEmptyDomainProcessBindingsOnMissingTriggerOperation() {
+        // prepare
+        final String sObjectDeveloperName = 'Account';
+        final String triggerOperation = null;
+
+        // exercise
+        Test.startTest();
+        final List<DomainProcessBinding__mdt> returnedDomainProcessBindings = DomainBindingExplorerController.getDomainProcessBindings(
+            sObjectDeveloperName,
+            triggerOperation
+        );
+        Test.stopTest();
+
+        // validate
+        System.assert(returnedDomainProcessBindings.isEmpty(), 'Returned Domain Process Bindings should be empty');
+    }
+
+    @IsTest
     private static void getDomainProcessBindingsShouldReturnDomainProcessBindings() {
         // prepare
         final String sObjectDeveloperName = 'PotatoDeveloperName';
