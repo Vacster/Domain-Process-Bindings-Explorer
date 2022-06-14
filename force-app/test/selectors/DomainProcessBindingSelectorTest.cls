@@ -46,6 +46,7 @@ private class DomainProcessBindingSelectorTest {
     private static void getSObjectFieldListShouldReturnExpectedFields() {
         // prepare
         final List<Schema.SObjectField> expectedSObjectFields = new List<Schema.SObjectField>{
+            DomainProcessBinding__mdt.QualifiedApiName,
             DomainProcessBinding__mdt.DeveloperName,
             DomainProcessBinding__mdt.ExecuteAsynchronous__c,
             DomainProcessBinding__mdt.Id,
@@ -61,6 +62,7 @@ private class DomainProcessBindingSelectorTest {
         Test.stopTest();
 
         // validate
+        //TODO: If we have extra fields selected in DomainProcessBindingSelector but not here the test still passes
         for (Schema.SObjectField currentSObjectField : expectedSObjectFields) {
             System.assert(
                 returnedSObjectFields.contains(currentSObjectField),
