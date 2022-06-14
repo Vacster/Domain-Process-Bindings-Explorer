@@ -37,10 +37,10 @@ describe('c-domain-bindings-explorer', () => {
             expect(domainProcessBindingsViewerEls.length).toBe(2)
 
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Update')
-            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
+            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('')
 
             expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Update')
-            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('Account')
+            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('')
         })
 
         it('updates viewers on changed to delete', async () => {
@@ -67,10 +67,10 @@ describe('c-domain-bindings-explorer', () => {
             expect(domainProcessBindingsViewerEls.length).toBe(2)
 
             expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Delete')
-            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
+            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('')
 
             expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Delete')
-            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('Account')
+            expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('')
         })
     })
 
@@ -154,9 +154,9 @@ describe('c-domain-bindings-explorer', () => {
         expect(domainProcessBindingsViewerEls.length).toBe(2)
 
         expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('Before_Insert') // we display the before first
-        expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('Account')
+        expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('')
 
         expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Insert') // then after
-        expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('Account')
+        expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('')
     })
 })
