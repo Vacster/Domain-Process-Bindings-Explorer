@@ -47,6 +47,9 @@ public with sharing class DomainBindingExplorerController {
         final String sObjectDeveloperName,
         final String triggerOperation
     ) {
+        if (String.isBlank(sObjectDeveloperName) || String.isBlank(triggerOperation)) {
+            return new List<DomainProcessBinding__mdt>();
+        }
         try {
             return DomainProcessBindingSelector.newInstance()
                 .selectByRelatedDomainBindingSObjectTriggerOperation(sObjectDeveloperName, triggerOperation);
