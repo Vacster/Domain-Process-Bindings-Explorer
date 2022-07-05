@@ -11,6 +11,7 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
 
     public override List<Schema.SObjectField> getSObjectFieldList() {
         return new List<Schema.SObjectField>{
+            DomainProcessBinding__mdt.QualifiedApiName,
             DomainProcessBinding__mdt.DeveloperName,
             DomainProcessBinding__mdt.ExecuteAsynchronous__c,
             DomainProcessBinding__mdt.Id,
@@ -41,7 +42,7 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         List<DomainProcessBinding__mdt> domainProcessBindings = (List<DomainProcessBinding__mdt>) Database.query(
             newQueryFactory()
                 .setCondition(
-                    'RelatedDomainBindingSObject__r.DeveloperName = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation'
+                    'RelatedDomainBindingSObject__r.QualifiedApiName = :sObjectDeveloperName AND TriggerOperation__c = :triggerOperation'
                 )
                 .toSOQL()
         );
