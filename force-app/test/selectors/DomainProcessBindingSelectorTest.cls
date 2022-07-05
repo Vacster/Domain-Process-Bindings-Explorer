@@ -62,11 +62,18 @@ private class DomainProcessBindingSelectorTest {
         Test.stopTest();
 
         // validate
-        //TODO: If we have extra fields selected in DomainProcessBindingSelector but not here the test still passes
+        // Running this way to make 100% sure expectedSObjectFields matches 1-1 with returnedSObjectFields
+        // this way we're sure no extra fields are either in the Selector or in the Test
         for (Schema.SObjectField currentSObjectField : expectedSObjectFields) {
             System.assert(
                 returnedSObjectFields.contains(currentSObjectField),
-                'Returned SObject Fields should contain all expected SObject Fields'
+                'Returned SObject Fields should contain all expected SObject Fields; no more and no less'
+            );
+        }
+        for (Schema.SObjectField currentSObjectField : returnedSObjectFields) {
+            System.assert(
+                expectedSObjectFields.contains(currentSObjectField),
+                'Returned SObject Fields should contain all expected SObject Fields; no more and no less'
             );
         }
     }
