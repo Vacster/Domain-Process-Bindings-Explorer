@@ -27,7 +27,7 @@ public with sharing class DomainBindingExplorerController {
      * @description returns all DomainProcessBinding__mdt records that meet the criterium passed in through parameters
      *
      * @param sObjectDeveloperName the SObject Developer name that matches the
-     *                             RelatedDomainBindingSObject__c or RelatedDomainBindingSObjectAlternate__c
+     *                             RelatedDomainBindingSObject__r.QualifiedApiName or RelatedDomainBindingSObjectAlternate__c
      *                             fields in the DomainProcessBinding__mdt records
      * @param triggerOperation the Trigger Operation that matches the TriggerOperation__c field in the
      *                         DomainProcessBinding__mdt records
@@ -47,6 +47,9 @@ public with sharing class DomainBindingExplorerController {
         final String sObjectDeveloperName,
         final String triggerOperation
     ) {
+        if (String.isBlank(sObjectDeveloperName) || String.isBlank(triggerOperation)) {
+            return new List<DomainProcessBinding__mdt>();
+        }
         try {
             return DomainProcessBindingSelector.newInstance()
                 .selectByRelatedDomainBindingSObjectTriggerOperation(sObjectDeveloperName, triggerOperation);

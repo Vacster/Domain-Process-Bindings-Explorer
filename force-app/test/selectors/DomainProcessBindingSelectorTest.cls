@@ -46,6 +46,7 @@ private class DomainProcessBindingSelectorTest {
     private static void getSObjectFieldListShouldReturnExpectedFields() {
         // prepare
         final List<Schema.SObjectField> expectedSObjectFields = new List<Schema.SObjectField>{
+            DomainProcessBinding__mdt.QualifiedApiName,
             DomainProcessBinding__mdt.DeveloperName,
             DomainProcessBinding__mdt.ExecuteAsynchronous__c,
             DomainProcessBinding__mdt.Id,
@@ -61,10 +62,18 @@ private class DomainProcessBindingSelectorTest {
         Test.stopTest();
 
         // validate
+        // Running this way to make 100% sure expectedSObjectFields matches 1-1 with returnedSObjectFields
+        // this way we're sure no extra fields are either in the Selector or in the Test
         for (Schema.SObjectField currentSObjectField : expectedSObjectFields) {
             System.assert(
                 returnedSObjectFields.contains(currentSObjectField),
-                'Returned SObject Fields should contain all expected SObject Fields'
+                'Returned SObject Fields should contain all expected SObject Fields; no more and no less'
+            );
+        }
+        for (Schema.SObjectField currentSObjectField : returnedSObjectFields) {
+            System.assert(
+                expectedSObjectFields.contains(currentSObjectField),
+                'Returned SObject Fields should contain all expected SObject Fields; no more and no less'
             );
         }
     }
