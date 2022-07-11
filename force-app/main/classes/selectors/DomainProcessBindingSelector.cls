@@ -18,6 +18,7 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
             DomainProcessBinding__mdt.IsActive__c,
             DomainProcessBinding__mdt.MasterLabel,
             DomainProcessBinding__mdt.OrderOfExecution__c,
+            DomainProcessBinding__mdt.PreventRecursive__c,
             DomainProcessBinding__mdt.Type__c
         };
     }

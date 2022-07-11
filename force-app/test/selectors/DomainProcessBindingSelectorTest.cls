@@ -53,6 +53,7 @@ private class DomainProcessBindingSelectorTest {
             DomainProcessBinding__mdt.IsActive__c,
             DomainProcessBinding__mdt.MasterLabel,
             DomainProcessBinding__mdt.OrderOfExecution__c,
+            DomainProcessBinding__mdt.PreventRecursive__c,
             DomainProcessBinding__mdt.Type__c
         };
 

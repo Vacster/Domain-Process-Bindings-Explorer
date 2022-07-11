@@ -35,6 +35,17 @@
                 >
                 </lightning-formatted-number>
             </span>
+            <template if:true={isPreventRecursive}>
+                <span class="slds-col slds-grow-none" role="separator">•</span>
+                <span class="slds-col slds-grow-none"
+                    ><lightning-icon
+                        alternative-text="Prevents Recursive"
+                        icon-name="utility:recurring_exception"
+                        data-id="prevent-recursive-icon"
+                        size="x-small"
+                    ></lightning-icon
+                ></span>
+            </template>
             <span class={activeBadgeCalculatedClass} data-id="badge-label">{activeBadgeLabel}</span>
         </p>
     </template>
