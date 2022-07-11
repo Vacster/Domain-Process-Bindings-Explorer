@@ -12,10 +12,12 @@
                 onaction_changed={handleTriggerOperationChanged}
                 onrefresh={handleRefreshCalled}
             ></c-domain-process-bindings-filter>
-            <c-domain-process-binding-viewer
-                selected-s-object-developer-name={selectedSObjectDeveloperName}
-                trigger-operation={beforeTriggerOperation}
-            ></c-domain-process-binding-viewer>
+            <template if:true={beforeTriggerOperation}>
+                <c-domain-process-binding-viewer
+                    selected-s-object-developer-name={selectedSObjectDeveloperName}
+                    trigger-operation={beforeTriggerOperation}
+                ></c-domain-process-binding-viewer>
+            </template>
             <c-domain-process-binding-viewer
                 selected-s-object-developer-name={selectedSObjectDeveloperName}
                 trigger-operation={afterTriggerOperation}

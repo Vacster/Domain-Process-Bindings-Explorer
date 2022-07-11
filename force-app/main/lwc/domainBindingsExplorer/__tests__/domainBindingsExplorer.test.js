@@ -72,6 +72,33 @@ describe('c-domain-bindings-explorer', () => {
             expect(domainProcessBindingsViewerEls[1].triggerOperation).toBe('After_Delete')
             expect(domainProcessBindingsViewerEls[1].selectedSObjectDeveloperName).toBe('')
         })
+
+        it('updates viewers on changed to undelete', async () => {
+            const element = createElement('c-domain-bindings-explorer', {
+                is: DomainBindingsExplorer,
+            })
+            document.body.appendChild(element)
+
+            const domainProcessBindingsFilterEl = element.shadowRoot.querySelector(
+                'c-domain-process-bindings-filter'
+            )
+            domainProcessBindingsFilterEl.dispatchEvent(
+                new CustomEvent('action_changed', {
+                    detail: 'undelete',
+                })
+            )
+
+            await flushPromises()
+
+            const domainProcessBindingsViewerEls = element.shadowRoot.querySelectorAll(
+                'c-domain-process-binding-viewer'
+            )
+
+            expect(domainProcessBindingsViewerEls.length).toBe(1)
+
+            expect(domainProcessBindingsViewerEls[0].triggerOperation).toBe('After_Undelete')
+            expect(domainProcessBindingsViewerEls[0].selectedSObjectDeveloperName).toBe('')
+        })
     })
 
     describe('sobject changes', () => {

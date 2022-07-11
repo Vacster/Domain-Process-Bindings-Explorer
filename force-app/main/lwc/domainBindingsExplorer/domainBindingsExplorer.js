@@ -45,6 +45,8 @@ export default class DomainBindingsExplorer extends LightningElement {
             triggerOperation += 'Update'
         } else if (this._triggerOperation === 'delete') {
             triggerOperation += 'Delete'
+        } else {
+            return null
         }
 
         return triggerOperation
@@ -58,6 +60,8 @@ export default class DomainBindingsExplorer extends LightningElement {
             triggerOperation += 'Update'
         } else if (this._triggerOperation === 'delete') {
             triggerOperation += 'Delete'
+        } else if (this._triggerOperation === 'undelete') {
+            triggerOperation += 'Undelete'
         }
 
         return triggerOperation

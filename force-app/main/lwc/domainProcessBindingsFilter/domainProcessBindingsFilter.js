@@ -10,6 +10,7 @@ export const POSSIBLE_ACTIONS = [
     { label: 'Created', value: 'create' },
     { label: 'Updated', value: 'update' },
     { label: 'Deleted', value: 'delete' },
+    { label: 'Undeleted', value: 'undelete'}
 ]
 
 /**
@@ -92,5 +93,5 @@ export default class DomainProcessBindingsFilter extends LightningElement {
 
 /**
  * Describes the possible action types
- * @typedef {('create'|'update'|'delete')} DomainProcessBindingsFilter~ActionType
+ * @typedef {('create'|'update'|'delete'|'undelete')} DomainProcessBindingsFilter~ActionType
  */
