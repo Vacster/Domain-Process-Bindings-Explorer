@@ -46,6 +46,17 @@
                     ></lightning-icon
                 ></span>
             </template>
+            <template if:true={isLogicalInverse}>
+                <span class="slds-col slds-grow-none" role="separator">•</span>
+                <span class="slds-col slds-grow-none"
+                    ><lightning-icon
+                        alternative-text="Logical Inverse"
+                        icon-name="utility:replace"
+                        data-id="logical-inverse-icon"
+                        size="x-small"
+                    ></lightning-icon
+                ></span>
+            </template>
             <span class={activeBadgeCalculatedClass} data-id="badge-label">{activeBadgeLabel}</span>
         </p>
     </template>
