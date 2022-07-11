@@ -24,18 +24,27 @@
                 </p>
             </span>
         </div>
-        <template if:true={domainProcessBindingsListLength}>
-            <template for:each={domainProcessBindingsList} for:item="binding">
-                <c-domain-process-binding-list-item
-                    key={binding.Id}
-                    record={binding}
-                ></c-domain-process-binding-list-item>
+        <template if:false={isLoading}>
+            <template if:true={domainProcessBindingsListLength}>
+                <template for:each={domainProcessBindingsList} for:item="binding">
+                    <c-domain-process-binding-list-item
+                        key={binding.Id}
+                        record={binding}
+                    ></c-domain-process-binding-list-item>
+                </template>
+            </template>
+            <template if:false={domainProcessBindingsListLength}>
+                <p
+                    class="slds-align_absolute-center slds-border_top slds-p-top_medium slds-text-color_weak"
+                    data-id="no-items-text"
+                >
+                    No items to display
+            </p>
             </template>
         </template>
-        <template if:false={domainProcessBindingsListLength}>
-            <p class="slds-p-horizontal_small slds-border_top" data-id="no-items-text">
-                No items to display
-            </p>
+        <!-- TODO: Replace with stencils once we have the technology -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading Bindings"></lightning-spinner>
         </template>
     </lightning-card>
 </template>

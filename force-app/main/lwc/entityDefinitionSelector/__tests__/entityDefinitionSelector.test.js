@@ -46,7 +46,7 @@ describe('c-entity-definition-selector', () => {
                 return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
             })
             expect(lightningCombobox.options).toStrictEqual(expectedOptions)
-
+            expect(lightningCombobox.spinnerActive).toBe(false)
             expect(lightningCombobox.variant).toBe('label-hidden')
         })
     })
@@ -196,13 +196,17 @@ describe('c-entity-definition-selector', () => {
         })
         document.body.appendChild(element)
 
-        const combobox = element.shadowRoot.querySelector('lightning-combobox')
-        expect(combobox).not.toBeNull()
-        expect(combobox.value).toBe('')
-        expect(combobox.options).toStrictEqual([])
+        const comboboxEl = element.shadowRoot.querySelector('lightning-combobox')
+        expect(comboboxEl).not.toBeNull()
+        expect(comboboxEl.value).toBe('')
+        expect(comboboxEl.options).toStrictEqual([])
+        expect(comboboxEl.spinnerActive).toBe(true)
 
         const sectionEl = element.shadowRoot.querySelector('section')
         expect(sectionEl).not.toBeNull()
         expect(sectionEl.classList).toContain('slds-popover_hide')
+
+        const objectLabelEl = element.shadowRoot.querySelector('b[data-id="selected-object-label"]')
+        expect(objectLabelEl.textContent).toBe('Loading...')
     })
 })

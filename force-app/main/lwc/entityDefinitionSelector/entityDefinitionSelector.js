@@ -23,6 +23,7 @@ export default class EntityDefinitionSelector extends LightningElement {
     _selectedSObjectDeveloperName = ''
     _selectedSObjectLabel = ''
     _displayPopover = false
+    _loading = true
 
     @wire(getEntityDefinitions)
     entityDefinitionsWire(value) {
@@ -33,6 +34,7 @@ export default class EntityDefinitionSelector extends LightningElement {
             if (!this.selectedSObjectDeveloperName) {
                 this.selectedSObjectDeveloperName = this._entityDefinitions[0].QualifiedApiName
             }
+            this._loading = false
         }
     }
 
@@ -60,11 +62,15 @@ export default class EntityDefinitionSelector extends LightningElement {
     }
 
     get selectedSObjectLabel() {
-        return this._selectedSObjectLabel
+        return this.isLoading ? 'Loading...' : this._selectedSObjectLabel
     }
 
     get selectedSObjectDeveloperName() {
         return this._selectedSObjectDeveloperName
+    }
+
+    get isLoading() {
+        return this._loading
     }
 
     set selectedSObjectDeveloperName(value) {
