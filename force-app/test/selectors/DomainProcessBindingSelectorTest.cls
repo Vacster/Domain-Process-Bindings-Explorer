@@ -51,6 +51,7 @@ private class DomainProcessBindingSelectorTest {
             DomainProcessBinding__mdt.ExecuteAsynchronous__c,
             DomainProcessBinding__mdt.Id,
             DomainProcessBinding__mdt.IsActive__c,
+            DomainProcessBinding__mdt.LogicalInverse__c,
             DomainProcessBinding__mdt.MasterLabel,
             DomainProcessBinding__mdt.OrderOfExecution__c,
             DomainProcessBinding__mdt.PreventRecursive__c,

@@ -3,6 +3,7 @@
   "ExecuteAsynchronous__c": false,
   "Id": "m041j000000M6ptAA0",
   "IsActive__c": false,
+  "LogicalInverse__c": false,
   "MasterLabel": "Inactive Action Test",
   "OrderOfExecution__c": 1.2,
   "PreventRecursive__c": false,
