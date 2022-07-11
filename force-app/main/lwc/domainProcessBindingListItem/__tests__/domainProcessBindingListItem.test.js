@@ -86,6 +86,30 @@ describe('c-domain-process-binding-list-item', () => {
             )
             expect(lightningIconEl).not.toBeNull()
         })
+        it('does not display prevent recursive icon on non-PreventRecursive record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockAsyncActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="prevent-recursive-icon"]'
+            )
+            expect(lightningIconEl).toBeNull()
+        })
+        it('displays prevent recursive icon on PreventRecursive record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="prevent-recursive-icon"]'
+            )
+            expect(lightningIconEl).not.toBeNull()
+        })
         it('displays expected classes in badge on active record', async () => {
             const element = createElement('c-domain-process-binding-list-item', {
                 is: DomainProcessBindingListItem,

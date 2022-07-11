@@ -5,5 +5,6 @@
   "IsActive__c": false,
   "MasterLabel": "Inactive Action Test",
   "OrderOfExecution__c": 1.2,
+  "PreventRecursive__c": false,
   "Type__c": "Action"
 }
