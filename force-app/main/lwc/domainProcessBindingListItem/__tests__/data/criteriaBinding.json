@@ -3,6 +3,7 @@
   "ExecuteAsynchronous__c": false,
   "Id": "m041j000000M6ywAAC",
   "IsActive__c": true,
+  "LogicalInverse__c": true,
   "MasterLabel": "Criteria Test",
   "OrderOfExecution__c": 1,
   "PreventRecursive__c": true,

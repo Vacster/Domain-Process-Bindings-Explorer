@@ -74,6 +74,10 @@ export default class DomainProcessBindingListItem extends NavigationMixin(Lightn
         return this.record?.PreventRecursive__c
     }
 
+    get isLogicalInverse() {
+        return this.record?.LogicalInverse__c
+    }
+
     get iconName() {
         return ICON_NAME_BY_BINDING_TYPE[this.record?.Type__c]
     }

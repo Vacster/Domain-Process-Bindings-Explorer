@@ -110,6 +110,30 @@ describe('c-domain-process-binding-list-item', () => {
             )
             expect(lightningIconEl).not.toBeNull()
         })
+        it('does not display logical inverse icon on non-LogicalInverse record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockAsyncActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="logical-inverse-icon"]'
+            )
+            expect(lightningIconEl).toBeNull()
+        })
+        it('displays logical inverse icon on LogicalInverse record', async () => {
+            const element = createElement('c-domain-process-binding-list-item', {
+                is: DomainProcessBindingListItem,
+            })
+            element.record = mockActionBinding
+            document.body.appendChild(element)
+
+            const lightningIconEl = element.shadowRoot.querySelector(
+                'lightning-icon[data-id="logical-inverse-icon"]'
+            )
+            expect(lightningIconEl).not.toBeNull()
+        })
         it('displays expected classes in badge on active record', async () => {
             const element = createElement('c-domain-process-binding-list-item', {
                 is: DomainProcessBindingListItem,
