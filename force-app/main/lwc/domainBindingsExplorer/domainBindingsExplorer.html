@@ -6,7 +6,7 @@
 -->
 <template>
     <div class="slds-grid slds-grid_align-center">
-        <div class="slds-col slds-size--3-of-5">
+        <div class={calculatedSizeClasses}>
             <c-domain-process-bindings-filter
                 onobject_changed={handleObjectChanged}
                 onaction_changed={handleTriggerOperationChanged}
