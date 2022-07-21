@@ -108,7 +108,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
         return title
     }
 
-    //TODO: Figure out why this line method does not show up as covered during jest tests
+    //TODO: Figure out why this method does not show up as covered during jest tests
     get domainProcessBindingsList() {
         let domainProcessBindings = this._domainProcessBindingsWire?.data
         if (domainProcessBindings !== undefined) {

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { LightningElement, wire } from 'lwc'
+import { api, LightningElement, wire } from 'lwc'
 import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerController.getEntityDefinitions'
 
 /**
@@ -36,6 +36,11 @@ export default class EntityDefinitionSelector extends LightningElement {
             }
             this._loading = false
         }
+    }
+
+    @api
+    filter(val) {
+        console.log('filter called in child ', val)
     }
 
     handleObjectChange(event) {

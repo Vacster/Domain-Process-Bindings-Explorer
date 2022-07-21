@@ -32,6 +32,7 @@ export const POSSIBLE_ACTIONS = [
  */
 export default class DomainProcessBindingsFilter extends LightningElement {
     _selectedAction = POSSIBLE_ACTIONS[0]
+    _filtered = false
 
     handleObjectChanged(event) {
         this.dispatchEvent(
@@ -52,8 +53,18 @@ export default class DomainProcessBindingsFilter extends LightningElement {
         )
     }
 
+    handleFilter() {
+        console.log('Filter clicked')
+        this.template.querySelector('c-entity-definition-selector').filter('potato')
+        this._filtered = !this._filtered
+    }
+
     handleRefresh() {
         this.dispatchEvent(new CustomEvent('refresh'))
+    }
+
+    get isFiltered() {
+        return this._filtered
     }
 
     get possibleActions() {

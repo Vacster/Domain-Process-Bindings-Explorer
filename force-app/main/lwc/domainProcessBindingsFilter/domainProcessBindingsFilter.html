@@ -32,13 +32,23 @@
                     </template>
                 </lightning-button-menu>
             </span>
-            <lightning-button-icon
-                class="slds-grow-none slds-col_bump-left"
-                icon-name="utility:refresh"
-                variant="border-filled"
-                onclick={handleRefresh}
-                tooltip="Refresh the Domain Process Bindings"
-            ></lightning-button-icon>
+            <!-- Add Tooltip once Salesforce supports Tooltip attribute in Lightning Button Icon Stateful -->
+            <span class="slds-col_bump-left slds-grid slds-grow-none slds-gutters_xx-small">
+                <lightning-button-icon-stateful
+                    class="slds-col"
+                    icon-name="utility:filterList"
+                    variant="border-filled"
+                    onclick={handleFilter}
+                    selected={isFiltered}
+                ></lightning-button-icon-stateful>
+                <lightning-button-icon
+                    class="slds-col"
+                    icon-name="utility:refresh"
+                    variant="border-filled"
+                    onclick={handleRefresh}
+                    tooltip="Refresh the Domain Process Bindings"
+                ></lightning-button-icon>
+            </span>
         </span>
     </div>
 </template>
