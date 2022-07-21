@@ -6,7 +6,7 @@
 -->
 <template>
     <div class="slds-grid slds-grid_align-center">
-        <div class="slds-col slds-size--3-of-5">
+        <div class={calculatedSizeClasses}>
             <c-domain-process-bindings-filter
                 onobject_changed={handleObjectChanged}
                 onaction_changed={handleTriggerOperationChanged}
@@ -23,11 +23,11 @@
                 trigger-operation={afterTriggerOperation}
             ></c-domain-process-binding-viewer>
             <div class="slds-grid slds-gutters_xx-small slds-grid_align-end slds-p-top_x-small">
-                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:jump_to_right"></lightning-icon><i> = Async</i></span>
+                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:jump_to_right"></lightning-icon><i>&nbsp;=&nbsp;Async</i></span>
                 <span class="slds-col" role="separator">•</span>
-                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:recurring_exception"></lightning-icon><i> = Prevent Recursive</i></span>
+                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:recurring_exception"></lightning-icon><i>&nbsp;=&nbsp;Prevent&nbsp;Recursive</i></span>
                 <span class="slds-col" role="separator">•</span>
-                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:replace"></lightning-icon><i> = Logical Inverse</i></span>
+                <span class="slds-col"><lightning-icon size="x-small" icon-name="utility:replace"></lightning-icon><i>&nbsp;=&nbsp;Logical&nbsp;Inverse</i></span>
             </div>
         </div>
     </div>

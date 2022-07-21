@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { LightningElement } from 'lwc'
+import { api, LightningElement } from 'lwc'
 
 /**
  * Displays information regarding an org's Domain Process Bindings. Allows filtering by specific SObject and Trigger Operation
@@ -16,6 +16,8 @@ import { LightningElement } from 'lwc'
  * <c-domain-process-bindings-explorer></c-domain-process-bindings-explorer>
  */
 export default class DomainBindingsExplorer extends LightningElement {
+    @api flexipageRegionWidth
+
     _selectedSObjectDeveloperName = ''
     _triggerOperation = 'create'
 
@@ -25,6 +27,7 @@ export default class DomainBindingsExplorer extends LightningElement {
 
     handleTriggerOperationChanged(event) {
         this._triggerOperation = event.detail
+        console.log(this.flexipageRegionWidth)
     }
 
     handleRefreshCalled() {
@@ -65,5 +68,15 @@ export default class DomainBindingsExplorer extends LightningElement {
         }
 
         return triggerOperation
+    }
+
+    get calculatedSizeClasses() {
+        let calculatedClasses = 'slds-col '
+        if (this.flexipageRegionWidth === 'LARGE') {
+            calculatedClasses += 'slds-large-size--9-of-12 '
+        }
+        calculatedClasses += 'slds-size_full'
+
+        return calculatedClasses
     }
 }
