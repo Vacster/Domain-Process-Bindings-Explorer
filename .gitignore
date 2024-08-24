@@ -7,3 +7,8 @@ node_modules/**
 coverage/**
 
 .DS_Store
+.husky/
+.idea/
+.sf/
+.sfdx/
+.vscode/

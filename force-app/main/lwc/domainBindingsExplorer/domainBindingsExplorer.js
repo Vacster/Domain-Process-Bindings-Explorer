@@ -27,7 +27,6 @@ export default class DomainBindingsExplorer extends LightningElement {
 
     handleTriggerOperationChanged(event) {
         this._triggerOperation = event.detail
-        console.log(this.flexipageRegionWidth)
     }
 
     handleRefreshCalled() {
