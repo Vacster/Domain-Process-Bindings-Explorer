@@ -31,10 +31,14 @@
     "jsdoc": "^4.0.2",
     "lint-staged": "^11.0.0",
     "prettier": "2.6.2",
-    "prettier-plugin-apex": "1.10.0"
+    "prettier-plugin-apex": "^1.13.0"
   },
   "lint-staged": {
-    "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": ["prettier --write"],
-    "**/{aura,lwc}/**": ["eslint"]
+    "**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
+      "prettier --write"
+    ],
+    "**/{aura,lwc}/**": [
+      "eslint"
+    ]
   }
 }
