@@ -12,26 +12,23 @@
                 icon-name="standard:opportunity"
                 class="slds-col slds-grow-none slds-m-right_small"
             ></lightning-icon>
-            <span class="slds-col slds-grow-none">
-                When a(n)&nbsp;
+            <span
+                class="slds-col slds-grow-none slds-shrink-none slds-grid slds-grid_vertical-align-center"
+            >
+                <span class="slds-m-horizontal_xx-small">When a(n)</span>
                 <c-entity-definition-selector
+                    class="slds-show_inline-block slds-shrink-none"
                     onobject_changed={handleObjectChanged}
                 ></c-entity-definition-selector>
-                &nbsp;record&nbsp;is&nbsp;
-                <span style="white-space: nowrap">
-                    <b data-id="selected-action-label">{selectedActionLabel}</b>
-                    <lightning-button-menu onselect={handleMenuSelect} variant="bare">
-                        <template for:each={possibleActions} for:item="action">
-                            <lightning-menu-item
-                                id={action.value}
-                                label={action.label}
-                                value={action.value}
-                                key={action.label}
-                            >
-                            </lightning-menu-item>
-                        </template>
-                    </lightning-button-menu>
-                </span>
+                <span class="slds-m-horizontal_xx-small">record is</span>
+                <lightning-combobox
+                    class="slds-show_inline-block slds-shrink-none c-action-combobox"
+                    label="Action"
+                    variant="label-hidden"
+                    value={selectedActionValue}
+                    options={possibleActions}
+                    onchange={handleActionChange}
+                ></lightning-combobox>
             </span>
             <lightning-button-icon
                 class="slds-grow-none slds-col_bump-left"

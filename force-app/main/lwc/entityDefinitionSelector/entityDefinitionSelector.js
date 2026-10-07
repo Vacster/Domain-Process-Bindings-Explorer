@@ -6,9 +6,10 @@
  */
 import { LightningElement, wire } from 'lwc'
 import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerController.getEntityDefinitions'
+import getSObjectNamesWithDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getSObjectNamesWithDomainProcessBindings'
 
 /**
- * Simple popover selector that allows a user to choose any EntityDefinition record that is Apex Triggerable
+ * Simple combobox selector that allows a user to choose an Apex Triggerable EntityDefinition record that is referenced by a Domain Process Binding
  *
  * @alias EntityDefinitionSelector
  * @hideconstructor
@@ -21,9 +22,10 @@ import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerControll
 export default class EntityDefinitionSelector extends LightningElement {
     _entityDefinitions = []
     _selectedSObjectDeveloperName = ''
-    _selectedSObjectLabel = ''
-    _displayPopover = false
     _loading = true
+    _sObjectNamesWithBindings = []
+    _bindingNamesLoading = true
+    _bindingNamesError = false
 
     @wire(getEntityDefinitions)
     entityDefinitionsWire(value) {
@@ -31,38 +33,49 @@ export default class EntityDefinitionSelector extends LightningElement {
             this._entityDefinitions = [...value.data].sort((a, b) => {
                 return a.Label.localeCompare(b.Label)
             })
-            if (!this.selectedSObjectDeveloperName) {
-                this.selectedSObjectDeveloperName = this._entityDefinitions[0].QualifiedApiName
-            }
             this._loading = false
+            this.updateSelectedObject()
+        }
+    }
+
+    @wire(getSObjectNamesWithDomainProcessBindings)
+    sObjectNamesWithBindingsWire(value) {
+        if (value.data) {
+            this._sObjectNamesWithBindings = value.data
+            this._bindingNamesLoading = false
+            this._bindingNamesError = false
+            this.updateSelectedObject()
+        } else if (value.error) {
+            this._bindingNamesLoading = false
+            this._bindingNamesError = true
+            this.updateSelectedObject()
         }
     }
 
     handleObjectChange(event) {
         this.selectedSObjectDeveloperName = event.detail.value
-        this._displayPopover = false
-    }
-
-    displayToolbar() {
-        this._displayPopover = !this._displayPopover
     }
 
     get options() {
-        return this._entityDefinitions.map((entityDefinition) => {
-            return { value: entityDefinition.QualifiedApiName, label: entityDefinition.Label }
-        })
+        return this._entityDefinitions
+            .filter((entityDefinition) =>
+                this._sObjectNamesWithBindings.includes(entityDefinition.QualifiedApiName)
+            )
+            .map((entityDefinition) => {
+                return { value: entityDefinition.QualifiedApiName, label: entityDefinition.Label }
+            })
     }
 
-    get calculatedPopoverClasses() {
-        let defaultClasses = 'slds-popover slds-nubbin_left slds-m-left_medium '
-        if (!this._displayPopover) {
-            defaultClasses += 'slds-popover_hide'
+    updateSelectedObject() {
+        if (this._loading || this._bindingNamesLoading) {
+            return
         }
-        return defaultClasses
-    }
-
-    get selectedSObjectLabel() {
-        return this.isLoading ? 'Loading...' : this._selectedSObjectLabel
+        if (!this.options.some((option) => option.value === this.selectedSObjectDeveloperName)) {
+            const selectedValue = this.options[0]?.value ?? ''
+            if (selectedValue !== this.selectedSObjectDeveloperName) {
+                this.selectedSObjectDeveloperName = selectedValue
+            }
+        }
     }
 
     get selectedSObjectDeveloperName() {
@@ -70,12 +83,15 @@ export default class EntityDefinitionSelector extends LightningElement {
     }
 
     get isLoading() {
-        return this._loading
+        return this._loading || this._bindingNamesLoading
+    }
+
+    get hasBindingNamesError() {
+        return this._bindingNamesError
     }
 
     set selectedSObjectDeveloperName(value) {
         this._selectedSObjectDeveloperName = value
-        this._selectedSObjectLabel = this.options.find((element) => element.value === value)?.label
 
         this.dispatchEvent(
             new CustomEvent('object_changed', {

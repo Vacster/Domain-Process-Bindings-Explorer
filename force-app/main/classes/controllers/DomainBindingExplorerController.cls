@@ -24,6 +24,24 @@ public with sharing class DomainBindingExplorerController {
     }
 
     /**
+     * @description Returns the SObject API names referenced by Domain Process Bindings
+     *
+     * @return a list of SObject API names with configured bindings
+     *
+     * @throws AuraHandledException from any Exception that can happen during the query
+     */
+    @AuraEnabled(Cacheable=true)
+    public static List<String> getSObjectNamesWithDomainProcessBindings() {
+        try {
+            return DomainProcessBindingSelector.newInstance().selectSObjectNamesWithBindings();
+        } catch (Exception e) {
+            AuraHandledException convertedException = new AuraHandledException(e.getMessage());
+            convertedException.setMessage(e.getMessage());
+            throw convertedException;
+        }
+    }
+
+    /**
      * @description returns all DomainProcessBinding__mdt records that meet the criterium passed in through parameters
      *
      * @param sObjectDeveloperName the SObject Developer name that matches the

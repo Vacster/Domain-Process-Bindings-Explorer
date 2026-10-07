@@ -2,7 +2,7 @@
 
 This is a project that helps you easily visualize (and soon manage) your AT4DX Domain Process Binding Custom Metadata records through a Lightning Web Component.
 
-![Screenshot of LWC](https://raw.githubusercontent.com/Vacster/Domain-Process-Bindings-Explorer/master/media/basicview.png)
+![Domain Process Bindings Explorer with inline object and action selectors](https://raw.githubusercontent.com/Vacster/Domain-Process-Bindings-Explorer/master/media/basicview.png)
 
 # Contribution Guidelines
 

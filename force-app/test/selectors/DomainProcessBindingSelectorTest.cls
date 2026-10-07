@@ -43,6 +43,25 @@ private class DomainProcessBindingSelectorTest {
     }
 
     @IsTest
+    private static void selectSObjectNamesWithBindingsShouldReturnUniqueConfiguredNames() {
+        // exercise
+        Test.startTest();
+        List<String> returnedSObjectNames = new DomainProcessBindingSelector().selectSObjectNamesWithBindings();
+        Test.stopTest();
+
+        // validate
+        System.assert(
+            returnedSObjectNames.contains(DomainProcessBinding__mdt.SObjectType.getDescribe().getName()),
+            'Alternate SObject names should be included'
+        );
+        System.assertEquals(
+            returnedSObjectNames.size(),
+            new Set<String>(returnedSObjectNames).size(),
+            'Returned SObject names should be unique'
+        );
+    }
+
+    @IsTest
     private static void getSObjectFieldListShouldReturnExpectedFields() {
         // prepare
         final List<Schema.SObjectField> expectedSObjectFields = new List<Schema.SObjectField>{

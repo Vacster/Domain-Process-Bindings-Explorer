@@ -37,6 +37,25 @@ public inherited sharing class DomainProcessBindingSelector extends ApplicationS
         return 'OrderOfExecution__c ASC';
     }
 
+    public List<String> selectSObjectNamesWithBindings() {
+        List<DomainProcessBinding__mdt> domainProcessBindings = [
+            SELECT RelatedDomainBindingSObject__r.QualifiedApiName, RelatedDomainBindingSObjectAlternate__c
+            FROM DomainProcessBinding__mdt
+        ];
+        Set<String> sObjectNames = new Set<String>();
+
+        for (DomainProcessBinding__mdt domainProcessBinding : domainProcessBindings) {
+            if (domainProcessBinding.RelatedDomainBindingSObject__r != null) {
+                sObjectNames.add(domainProcessBinding.RelatedDomainBindingSObject__r.QualifiedApiName);
+            }
+            if (String.isNotBlank(domainProcessBinding.RelatedDomainBindingSObjectAlternate__c)) {
+                sObjectNames.add(domainProcessBinding.RelatedDomainBindingSObjectAlternate__c);
+            }
+        }
+
+        return new List<String>(sObjectNames);
+    }
+
     public List<DomainProcessBinding__mdt> selectByRelatedDomainBindingSObjectTriggerOperation(
         final String sObjectDeveloperName,
         final String triggerOperation
