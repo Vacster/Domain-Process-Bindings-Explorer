@@ -40,79 +40,52 @@ describe('c-entity-definition-selector', () => {
         return Promise.resolve()
     }
 
-    describe('getEntityDefinitions @wire data', () => {
-        it('renders lightning combobox with expected default value and options', async () => {
+    describe('wired data', () => {
+        it('renders only bound objects with the expected default value', async () => {
             const element = createElement('c-entity-definition-selector', {
                 is: EntityDefinitionSelector,
             })
             document.body.appendChild(element)
 
             getEntityDefinitions.emit(mockGetEntityDefinitions)
+            getSObjectNamesWithDomainProcessBindings.emit(['Account', 'Contact'])
 
             await flushPromises()
 
             const lightningCombobox = element.shadowRoot.querySelector('lightning-combobox')
-            expect(lightningCombobox.value).toBe(mockGetEntityDefinitionsSorted[0].QualifiedApiName)
+            expect(lightningCombobox.value).toBe('Account')
 
-            const expectedOptions = mockGetEntityDefinitionsSorted.map((entityDefinition) => {
-                return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
-            })
+            const expectedOptions = mockGetEntityDefinitionsSorted
+                .filter((entityDefinition) =>
+                    ['Account', 'Contact'].includes(entityDefinition.QualifiedApiName)
+                )
+                .map((entityDefinition) => {
+                    return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
+                })
             expect(lightningCombobox.options).toStrictEqual(expectedOptions)
             expect(lightningCombobox.spinnerActive).toBe(false)
             expect(lightningCombobox.variant).toBe('label-hidden')
         })
     })
 
-    describe('filtering to objects with Domain Process Bindings', () => {
-        it('limits options to bound objects and restores all options when unchecked', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-
-            getEntityDefinitions.emit(mockGetEntityDefinitions)
-            getSObjectNamesWithDomainProcessBindings.emit(['Contact'])
-
-            await flushPromises()
-
-            const checkbox = element.shadowRoot.querySelector('lightning-input')
-            const combobox = element.shadowRoot.querySelector('lightning-combobox')
-            expect(checkbox.type).toBe('checkbox')
-            expect(checkbox.disabled).toBe(false)
-
-            checkbox.checked = true
-            checkbox.dispatchEvent(new CustomEvent('change'))
-            await flushPromises()
-
-            expect(combobox.options).toStrictEqual([{ value: 'Contact', label: 'Contact' }])
-            expect(combobox.value).toBe('Contact')
-
-            checkbox.checked = false
-            checkbox.dispatchEvent(new CustomEvent('change'))
-            await flushPromises()
-
-            expect(combobox.options).toHaveLength(mockGetEntityDefinitions.length)
+    it('shows an error and no unfiltered objects when binding names fail to load', async () => {
+        const element = createElement('c-entity-definition-selector', {
+            is: EntityDefinitionSelector,
         })
+        document.body.appendChild(element)
 
-        it('disables the filter and reports an error when binding names fail to load', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-
-            getSObjectNamesWithDomainProcessBindings.error({
-                body: { message: 'Unable to load bindings' },
-                status: 500,
-                statusText: 'Server Error',
-            })
-            await flushPromises()
-
-            const checkbox = element.shadowRoot.querySelector('lightning-input')
-            expect(checkbox.disabled).toBe(true)
-            expect(element.shadowRoot.querySelector('[role="alert"]').textContent).toContain(
-                'Unable to load objects with Domain Process Bindings.'
-            )
+        getSObjectNamesWithDomainProcessBindings.error({
+            body: { message: 'Unable to load bindings' },
+            status: 500,
+            statusText: 'Server Error',
         })
+        getEntityDefinitions.emit(mockGetEntityDefinitions)
+        await flushPromises()
+
+        expect(element.shadowRoot.querySelector('[role="alert"]').textContent).toContain(
+            'Unable to load objects with Domain Process Bindings.'
+        )
+        expect(element.shadowRoot.querySelector('lightning-combobox').options).toStrictEqual([])
     })
 
     describe('handleObjectChange', () => {
@@ -186,6 +159,11 @@ describe('c-entity-definition-selector', () => {
             document.body.appendChild(element)
 
             getEntityDefinitions.emit(mockGetEntityDefinitions)
+            getSObjectNamesWithDomainProcessBindings.emit(
+                mockGetEntityDefinitions.map(
+                    (entityDefinition) => entityDefinition.QualifiedApiName
+                )
+            )
 
             const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
             lightningComboboxEl.dispatchEvent(
@@ -265,11 +243,6 @@ describe('c-entity-definition-selector', () => {
         expect(comboboxEl.value).toBe('')
         expect(comboboxEl.options).toStrictEqual([])
         expect(comboboxEl.spinnerActive).toBe(true)
-
-        const checkboxEl = element.shadowRoot.querySelector('lightning-input')
-        expect(checkboxEl).not.toBeNull()
-        expect(checkboxEl.checked).toBe(false)
-        expect(checkboxEl.disabled).toBe(true)
 
         const sectionEl = element.shadowRoot.querySelector('section')
         expect(sectionEl).not.toBeNull()

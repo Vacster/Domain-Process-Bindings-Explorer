@@ -9,7 +9,7 @@ import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerControll
 import getSObjectNamesWithDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getSObjectNamesWithDomainProcessBindings'
 
 /**
- * Simple popover selector that allows a user to choose any EntityDefinition record that is Apex Triggerable
+ * Popover selector for Apex Triggerable EntityDefinitions referenced by a Domain Process Binding
  *
  * @alias EntityDefinitionSelector
  * @hideconstructor
@@ -26,7 +26,6 @@ export default class EntityDefinitionSelector extends LightningElement {
     _displayPopover = false
     _loading = true
     _sObjectNamesWithBindings = []
-    _showOnlyBoundSObjects = false
     _bindingNamesLoading = true
     _bindingNamesError = false
 
@@ -36,8 +35,8 @@ export default class EntityDefinitionSelector extends LightningElement {
             this._entityDefinitions = [...value.data].sort((a, b) => {
                 return a.Label.localeCompare(b.Label)
             })
-            this.updateSelectedObjectForFilter()
             this._loading = false
+            this.updateSelectedObject()
         }
     }
 
@@ -47,10 +46,11 @@ export default class EntityDefinitionSelector extends LightningElement {
             this._sObjectNamesWithBindings = value.data
             this._bindingNamesLoading = false
             this._bindingNamesError = false
-            this.updateSelectedObjectForFilter()
+            this.updateSelectedObject()
         } else if (value.error) {
             this._bindingNamesLoading = false
             this._bindingNamesError = true
+            this.updateSelectedObject()
         }
     }
 
@@ -59,27 +59,24 @@ export default class EntityDefinitionSelector extends LightningElement {
         this._displayPopover = false
     }
 
-    handleOnlyBoundSObjectsChange(event) {
-        this._showOnlyBoundSObjects = event.target.checked
-        this.updateSelectedObjectForFilter()
-    }
-
     displayToolbar() {
         this._displayPopover = !this._displayPopover
     }
 
     get options() {
-        const entityDefinitions = this._showOnlyBoundSObjects
-            ? this._entityDefinitions.filter((entityDefinition) =>
-                  this._sObjectNamesWithBindings.includes(entityDefinition.QualifiedApiName)
-              )
-            : this._entityDefinitions
-        return entityDefinitions.map((entityDefinition) => {
-            return { value: entityDefinition.QualifiedApiName, label: entityDefinition.Label }
-        })
+        return this._entityDefinitions
+            .filter((entityDefinition) =>
+                this._sObjectNamesWithBindings.includes(entityDefinition.QualifiedApiName)
+            )
+            .map((entityDefinition) => {
+                return { value: entityDefinition.QualifiedApiName, label: entityDefinition.Label }
+            })
     }
 
-    updateSelectedObjectForFilter() {
+    updateSelectedObject() {
+        if (this._loading || this._bindingNamesLoading) {
+            return
+        }
         if (!this.options.some((option) => option.value === this.selectedSObjectDeveloperName)) {
             const selectedValue = this.options[0]?.value ?? ''
             if (selectedValue !== this.selectedSObjectDeveloperName) {
@@ -105,15 +102,7 @@ export default class EntityDefinitionSelector extends LightningElement {
     }
 
     get isLoading() {
-        return this._loading
-    }
-
-    get showOnlyBoundSObjects() {
-        return this._showOnlyBoundSObjects
-    }
-
-    get isBoundSObjectFilterDisabled() {
-        return this._bindingNamesLoading || this._bindingNamesError
+        return this._loading || this._bindingNamesLoading
     }
 
     get hasBindingNamesError() {
