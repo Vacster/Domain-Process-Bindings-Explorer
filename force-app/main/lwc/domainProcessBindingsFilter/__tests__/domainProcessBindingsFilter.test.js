@@ -96,6 +96,30 @@ describe('c-domain-process-bindings-filter', () => {
         })
     })
 
+    it('keeps the sentence, selector and action combobox in one non-wrapping row', () => {
+        const element = createElement('c-domain-process-bindings-filter', {
+            is: DomainProcessBindingsFilter,
+        })
+        document.body.appendChild(element)
+
+        const selectorEl = element.shadowRoot.querySelector('c-entity-definition-selector')
+        const comboboxEl = element.shadowRoot.querySelector('lightning-combobox')
+        const rowEl = selectorEl.parentElement
+        expect(comboboxEl.parentElement).toBe(rowEl)
+        expect(rowEl.classList).toContain('slds-grid')
+        expect(rowEl.classList).toContain('slds-shrink-none')
+        expect(rowEl.classList).not.toContain('slds-wrap')
+        expect(rowEl.querySelector('[style]')).toBeNull()
+        expect(
+            [...rowEl.children].map((el) => el.textContent.trim() || el.localName)
+        ).toStrictEqual([
+            'When a(n)',
+            'c-entity-definition-selector',
+            'record is',
+            'lightning-combobox',
+        ])
+    })
+
     it('has default values', () => {
         const element = createElement('c-domain-process-bindings-filter', {
             is: DomainProcessBindingsFilter,
