@@ -77,6 +77,64 @@ private class DomainBindingExplorerControllerTest {
     }
 
     @IsTest
+    private static void getSObjectNamesWithDomainProcessBindingsShouldReturnSObjectNames() {
+        // prepare
+        final List<String> mockSObjectNames = new List<String>{ 'Account', 'Contact' };
+
+        // mock
+        IDomainProcessBindingSelector domainProcessBindingSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(
+            IDomainProcessBindingSelector.class
+        );
+        MOCKS.startStubbing();
+        MOCKS.when(domainProcessBindingSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
+        MOCKS.when(domainProcessBindingSelectorMock.selectSObjectNamesWithBindings()).thenReturn(mockSObjectNames);
+        MOCKS.stopStubbing();
+        Application.Selector.setMock(domainProcessBindingSelectorMock);
+
+        // exercise
+        Test.startTest();
+        final List<String> returnedSObjectNames = DomainBindingExplorerController.getSObjectNamesWithDomainProcessBindings();
+        Test.stopTest();
+
+        // validate
+        System.assertEquals(mockSObjectNames, returnedSObjectNames, 'Returned SObject names should match');
+    }
+
+    @IsTest
+    private static void getSObjectNamesWithDomainProcessBindingsShouldThrowAuraHandledExceptionOnError() {
+        // prepare
+        Exception exceptionToThrow = new System.QueryException('This is an error message');
+
+        // mock
+        IDomainProcessBindingSelector domainProcessBindingSelectorMock = (IDomainProcessBindingSelector) MOCKS.mock(
+            IDomainProcessBindingSelector.class
+        );
+        MOCKS.startStubbing();
+        MOCKS.when(domainProcessBindingSelectorMock.sObjectType()).thenReturn(DomainProcessBinding__mdt.SObjectType);
+        MOCKS.when(domainProcessBindingSelectorMock.selectSObjectNamesWithBindings()).thenThrow(exceptionToThrow);
+        MOCKS.stopStubbing();
+        Application.Selector.setMock(domainProcessBindingSelectorMock);
+
+        // exercise
+        Test.startTest();
+        Exception caughtException;
+        try {
+            DomainBindingExplorerController.getSObjectNamesWithDomainProcessBindings();
+        } catch (Exception e) {
+            caughtException = e;
+        }
+        Test.stopTest();
+
+        // validate
+        System.assertNotEquals(null, caughtException, 'An exception should have been thrown and caught');
+        System.assert(
+            caughtException instanceof AuraHandledException,
+            'Caught exception should be an instance of AuraHandledException'
+        );
+        System.assertEquals(exceptionToThrow.getMessage(), caughtException.getMessage(), 'Exception message should match');
+    }
+
+    @IsTest
     private static void getDomainProcessBindingsShouldEmptyDomainProcessBindingsOnMissingSObjectDeveloperName() {
         // prepare
         final String sObjectDeveloperName = null;

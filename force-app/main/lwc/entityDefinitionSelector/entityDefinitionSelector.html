@@ -18,6 +18,18 @@
         <div class="slds-popover__body">
             <div class="slds-media">
                 <div class="slds-media__body">
+                    <lightning-input
+                        type="checkbox"
+                        label="Only objects with Domain Process Bindings"
+                        checked={showOnlyBoundSObjects}
+                        disabled={isBoundSObjectFilterDisabled}
+                        onchange={handleOnlyBoundSObjectsChange}
+                    ></lightning-input>
+                    <template if:true={hasBindingNamesError}>
+                        <p class="slds-text-color_error" role="alert">
+                            Unable to load objects with Domain Process Bindings.
+                        </p>
+                    </template>
                     <lightning-combobox
                         variant="label-hidden"
                         placeholder="Select Object"
