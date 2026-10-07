@@ -4,10 +4,6 @@ This is a project that helps you easily visualize (and soon manage) your AT4DX D
 
 ![Domain Process Bindings Explorer with inline object and action selectors](https://raw.githubusercontent.com/Vacster/Domain-Process-Bindings-Explorer/master/media/basicview.png)
 
-The object picker shows only SObjects referenced by Domain Process Bindings:
-
-![Object picker showing SObjects with Domain Process Bindings](https://raw.githubusercontent.com/Vacster/Domain-Process-Bindings-Explorer/master/media/objectpicker.png)
-
 # Contribution Guidelines
 
 Any contributions are welcome! These can be in the form of Issues in our GitHub page or through Pull Requests.
