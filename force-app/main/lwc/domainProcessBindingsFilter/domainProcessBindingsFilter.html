@@ -15,22 +15,19 @@
             <span class="slds-col slds-grow-none">
                 When a(n)&nbsp;
                 <c-entity-definition-selector
+                    class="slds-show_inline-block"
                     onobject_changed={handleObjectChanged}
                 ></c-entity-definition-selector>
                 &nbsp;record&nbsp;is&nbsp;
                 <span style="white-space: nowrap">
-                    <b data-id="selected-action-label">{selectedActionLabel}</b>
-                    <lightning-button-menu onselect={handleMenuSelect} variant="bare">
-                        <template for:each={possibleActions} for:item="action">
-                            <lightning-menu-item
-                                id={action.value}
-                                label={action.label}
-                                value={action.value}
-                                key={action.label}
-                            >
-                            </lightning-menu-item>
-                        </template>
-                    </lightning-button-menu>
+                    <lightning-combobox
+                        class="slds-show_inline-block c-action-combobox"
+                        label="Action"
+                        variant="label-hidden"
+                        value={selectedActionValue}
+                        options={possibleActions}
+                        onchange={handleActionChange}
+                    ></lightning-combobox>
                 </span>
             </span>
             <lightning-button-icon

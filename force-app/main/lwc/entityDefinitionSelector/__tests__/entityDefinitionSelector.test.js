@@ -40,215 +40,103 @@ describe('c-entity-definition-selector', () => {
         return Promise.resolve()
     }
 
-    describe('wired data', () => {
-        it('renders only bound objects with the expected default value', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-
-            getEntityDefinitions.emit(mockGetEntityDefinitions)
-            getSObjectNamesWithDomainProcessBindings.emit(['Account', 'Contact'])
-
-            await flushPromises()
-
-            const lightningCombobox = element.shadowRoot.querySelector('lightning-combobox')
-            expect(lightningCombobox.value).toBe('Account')
-
-            const expectedOptions = mockGetEntityDefinitionsSorted
-                .filter((entityDefinition) =>
-                    ['Account', 'Contact'].includes(entityDefinition.QualifiedApiName)
-                )
-                .map((entityDefinition) => {
-                    return { value: entityDefinition.DeveloperName, label: entityDefinition.Label }
-                })
-            expect(lightningCombobox.options).toStrictEqual(expectedOptions)
-            expect(lightningCombobox.spinnerActive).toBe(false)
-            expect(lightningCombobox.variant).toBe('label-hidden')
-        })
-    })
-
-    it('shows an error and no unfiltered objects when binding names fail to load', async () => {
+    function createSelector() {
         const element = createElement('c-entity-definition-selector', {
             is: EntityDefinitionSelector,
         })
         document.body.appendChild(element)
+        return element
+    }
 
-        getSObjectNamesWithDomainProcessBindings.error({
-            body: { message: 'Unable to load bindings' },
-            status: 500,
-            statusText: 'Server Error',
-        })
-        getEntityDefinitions.emit(mockGetEntityDefinitions)
-        await flushPromises()
+    function combobox(element) {
+        return element.shadowRoot.querySelector('lightning-combobox')
+    }
 
-        expect(element.shadowRoot.querySelector('[role="alert"]').textContent).toContain(
-            'Unable to load objects with Domain Process Bindings.'
-        )
-        expect(element.shadowRoot.querySelector('lightning-combobox').options).toStrictEqual([])
-    })
-
-    describe('handleObjectChange', () => {
-        // mock values exist in getEntityDefinitions.json
-        const MOCK_SOBJECT_DEVELOPER_NAME = 'OrderItemChangeEvent'
-        const MOCK_SOBJECT_LABEL = 'Order Product Change Event'
-        it('sends out objectChanged event with expected detail', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            const handler = jest.fn()
-            element.addEventListener('object_changed', handler)
-            document.body.appendChild(element)
-
-            const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
-            lightningComboboxEl.dispatchEvent(
-                new CustomEvent('change', {
-                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
-                })
-            )
-            await flushPromises()
-
-            expect(handler.mock.calls.length).toBe(1)
-            expect(handler.mock.calls[0][0].detail).toBe(MOCK_SOBJECT_DEVELOPER_NAME)
-        })
-        it('updates value in LightningCombobox', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-            const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
-            lightningComboboxEl.dispatchEvent(
-                new CustomEvent('change', {
-                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
-                })
-            )
-
-            await flushPromises()
-
-            expect(lightningComboboxEl.value).toBe(MOCK_SOBJECT_DEVELOPER_NAME)
-        })
-        it('hides the popover', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-
-            const lightningButtonIconEl = element.shadowRoot.querySelector('lightning-button-icon')
-            lightningButtonIconEl.click()
-
-            await flushPromises()
-
-            const sectionEl = element.shadowRoot.querySelector('section')
-            expect(sectionEl.classList).not.toContain('slds-popover_hide')
-
-            const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
-            lightningComboboxEl.dispatchEvent(
-                new CustomEvent('change', {
-                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
-                })
-            )
-
-            await flushPromises()
-
-            expect(sectionEl.classList).toContain('slds-popover_hide')
-        })
-        it('displays expected label', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
+    describe('wired data', () => {
+        it('renders all bound objects and selects the first one', async () => {
+            const element = createSelector()
+            let selected
+            element.addEventListener('object_changed', (event) => (selected = event.detail))
 
             getEntityDefinitions.emit(mockGetEntityDefinitions)
             getSObjectNamesWithDomainProcessBindings.emit(
-                mockGetEntityDefinitions.map(
+                mockGetEntityDefinitionsSorted.map(
                     (entityDefinition) => entityDefinition.QualifiedApiName
                 )
             )
-
-            const lightningComboboxEl = element.shadowRoot.querySelector('lightning-combobox')
-            lightningComboboxEl.dispatchEvent(
-                new CustomEvent('change', {
-                    detail: { value: MOCK_SOBJECT_DEVELOPER_NAME },
-                })
-            )
-
             await flushPromises()
 
-            const objectLabelEl = element.shadowRoot.querySelector(
-                'b[data-id="selected-object-label"]'
+            expect(combobox(element).value).toBe(mockGetEntityDefinitionsSorted[0].QualifiedApiName)
+            expect(combobox(element).spinnerActive).toBe(false)
+            expect(combobox(element).variant).toBe('label-hidden')
+            expect(selected).toBe(mockGetEntityDefinitionsSorted[0].QualifiedApiName)
+            expect(combobox(element).options).toStrictEqual(
+                mockGetEntityDefinitionsSorted.map((entityDefinition) => ({
+                    value: entityDefinition.QualifiedApiName,
+                    label: entityDefinition.Label,
+                }))
             )
-            expect(objectLabelEl.textContent).toBe(MOCK_SOBJECT_LABEL)
+        })
+
+        it('only offers objects referenced by Domain Process Bindings', async () => {
+            const element = createSelector()
+
+            getEntityDefinitions.emit(mockGetEntityDefinitions)
+            getSObjectNamesWithDomainProcessBindings.emit(['Contact'])
+            await flushPromises()
+
+            expect(combobox(element).options).toStrictEqual([
+                { value: 'Contact', label: 'Contact' },
+            ])
+            expect(combobox(element).value).toBe('Contact')
+        })
+
+        it('offers no objects and reports an error when binding names fail to load', async () => {
+            const element = createSelector()
+
+            getEntityDefinitions.emit(mockGetEntityDefinitions)
+            getSObjectNamesWithDomainProcessBindings.error({
+                body: { message: 'Unable to load bindings' },
+                status: 500,
+                statusText: 'Server Error',
+            })
+            await flushPromises()
+
+            expect(combobox(element).options).toStrictEqual([])
+            expect(element.shadowRoot.querySelector('[role="alert"]').textContent).toContain(
+                'Unable to load objects with Domain Process Bindings.'
+            )
         })
     })
 
-    describe('displayToolbar method', () => {
-        const EXPECTED_CLASSES = ['slds-popover', 'slds-nubbin_left', 'slds-m-left_medium']
-        it('displays the popover', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
+    describe('handleObjectChange', () => {
+        it('sends object_changed with the chosen object and updates the value', async () => {
+            const element = createSelector()
+            const handler = jest.fn()
 
-            const sectionEl = element.shadowRoot.querySelector('section')
-            expect(sectionEl.classList).toContain('slds-popover_hide') // starts hidden
-            for (let currentClass of EXPECTED_CLASSES) {
-                expect(sectionEl.classList).toContain(currentClass)
-            }
+            getEntityDefinitions.emit(mockGetEntityDefinitions)
+            getSObjectNamesWithDomainProcessBindings.emit(['Account', 'Contact'])
+            await flushPromises()
+            element.addEventListener('object_changed', handler)
 
-            const lightningButtonIconEl = element.shadowRoot.querySelector('lightning-button-icon')
-            lightningButtonIconEl.click()
-
+            combobox(element).dispatchEvent(
+                new CustomEvent('change', { detail: { value: 'Contact' } })
+            )
             await flushPromises()
 
-            expect(sectionEl.classList).not.toContain('slds-popover_hide')
-            for (let currentClass of EXPECTED_CLASSES) {
-                expect(sectionEl.classList).toContain(currentClass)
-            }
-        })
-        it('hides the popover', async () => {
-            const element = createElement('c-entity-definition-selector', {
-                is: EntityDefinitionSelector,
-            })
-            document.body.appendChild(element)
-
-            const sectionEl = element.shadowRoot.querySelector('section')
-            const lightningButtonIconEl = element.shadowRoot.querySelector('lightning-button-icon')
-            lightningButtonIconEl.click()
-
-            await flushPromises()
-
-            expect(sectionEl.classList).not.toContain('slds-popover_hide') // from a point where it's showing
-            for (let currentClass of EXPECTED_CLASSES) {
-                expect(sectionEl.classList).toContain(currentClass)
-            }
-
-            lightningButtonIconEl.click()
-            await flushPromises()
-
-            expect(sectionEl.classList).toContain('slds-popover_hide')
-            for (let currentClass of EXPECTED_CLASSES) {
-                expect(sectionEl.classList).toContain(currentClass)
-            }
+            expect(handler).toHaveBeenCalledTimes(1)
+            expect(handler.mock.calls[0][0].detail).toBe('Contact')
+            expect(combobox(element).value).toBe('Contact')
         })
     })
 
-    it('gets default values', async () => {
-        const element = createElement('c-entity-definition-selector', {
-            is: EntityDefinitionSelector,
-        })
-        document.body.appendChild(element)
+    it('renders a loading combobox by default', () => {
+        const element = createSelector()
 
-        const comboboxEl = element.shadowRoot.querySelector('lightning-combobox')
-        expect(comboboxEl).not.toBeNull()
-        expect(comboboxEl.value).toBe('')
-        expect(comboboxEl.options).toStrictEqual([])
-        expect(comboboxEl.spinnerActive).toBe(true)
-
-        const sectionEl = element.shadowRoot.querySelector('section')
-        expect(sectionEl).not.toBeNull()
-        expect(sectionEl.classList).toContain('slds-popover_hide')
-
-        const objectLabelEl = element.shadowRoot.querySelector('b[data-id="selected-object-label"]')
-        expect(objectLabelEl.textContent).toBe('Loading...')
+        expect(combobox(element).value).toBe('')
+        expect(combobox(element).options).toStrictEqual([])
+        expect(combobox(element).spinnerActive).toBe(true)
+        expect(combobox(element).placeholder).toBe('Select Object')
+        expect(element.shadowRoot.querySelector('lightning-button-icon')).toBeNull()
     })
 })

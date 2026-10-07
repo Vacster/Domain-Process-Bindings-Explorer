@@ -10,7 +10,7 @@ export const POSSIBLE_ACTIONS = [
     { label: 'Created', value: 'create' },
     { label: 'Updated', value: 'update' },
     { label: 'Deleted', value: 'delete' },
-    { label: 'Undeleted', value: 'undelete'}
+    { label: 'Undeleted', value: 'undelete' },
 ]
 
 /**
@@ -41,7 +41,7 @@ export default class DomainProcessBindingsFilter extends LightningElement {
         )
     }
 
-    handleMenuSelect(event) {
+    handleActionChange(event) {
         this._selectedAction = POSSIBLE_ACTIONS.find(
             (action) => action.value === event.detail.value
         )
@@ -60,8 +60,8 @@ export default class DomainProcessBindingsFilter extends LightningElement {
         return POSSIBLE_ACTIONS
     }
 
-    get selectedActionLabel() {
-        return this._selectedAction?.label
+    get selectedActionValue() {
+        return this._selectedAction?.value
     }
 }
 

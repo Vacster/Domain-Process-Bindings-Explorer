@@ -9,7 +9,7 @@ import getEntityDefinitions from '@salesforce/apex/DomainBindingExplorerControll
 import getSObjectNamesWithDomainProcessBindings from '@salesforce/apex/DomainBindingExplorerController.getSObjectNamesWithDomainProcessBindings'
 
 /**
- * Popover selector for Apex Triggerable EntityDefinitions referenced by a Domain Process Binding
+ * Simple combobox selector that allows a user to choose an Apex Triggerable EntityDefinition record that is referenced by a Domain Process Binding
  *
  * @alias EntityDefinitionSelector
  * @hideconstructor
@@ -22,8 +22,6 @@ import getSObjectNamesWithDomainProcessBindings from '@salesforce/apex/DomainBin
 export default class EntityDefinitionSelector extends LightningElement {
     _entityDefinitions = []
     _selectedSObjectDeveloperName = ''
-    _selectedSObjectLabel = ''
-    _displayPopover = false
     _loading = true
     _sObjectNamesWithBindings = []
     _bindingNamesLoading = true
@@ -56,11 +54,6 @@ export default class EntityDefinitionSelector extends LightningElement {
 
     handleObjectChange(event) {
         this.selectedSObjectDeveloperName = event.detail.value
-        this._displayPopover = false
-    }
-
-    displayToolbar() {
-        this._displayPopover = !this._displayPopover
     }
 
     get options() {
@@ -85,18 +78,6 @@ export default class EntityDefinitionSelector extends LightningElement {
         }
     }
 
-    get calculatedPopoverClasses() {
-        let defaultClasses = 'slds-popover slds-nubbin_left slds-m-left_medium '
-        if (!this._displayPopover) {
-            defaultClasses += 'slds-popover_hide'
-        }
-        return defaultClasses
-    }
-
-    get selectedSObjectLabel() {
-        return this.isLoading ? 'Loading...' : this._selectedSObjectLabel
-    }
-
     get selectedSObjectDeveloperName() {
         return this._selectedSObjectDeveloperName
     }
@@ -111,7 +92,6 @@ export default class EntityDefinitionSelector extends LightningElement {
 
     set selectedSObjectDeveloperName(value) {
         this._selectedSObjectDeveloperName = value
-        this._selectedSObjectLabel = this.options.find((element) => element.value === value)?.label
 
         this.dispatchEvent(
             new CustomEvent('object_changed', {

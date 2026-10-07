@@ -1,0 +1,4 @@
+.c-action-combobox {
+    vertical-align: middle;
+    width: var(--slds-g-sizing-13, 10rem);
+}

@@ -1,0 +1,7 @@
+:host {
+    vertical-align: middle;
+}
+
+.c-object-combobox {
+    width: var(--slds-g-sizing-14, 15rem);
+}

@@ -52,26 +52,27 @@ describe('c-domain-process-bindings-filter', () => {
     })
 
     describe('possible action update', () => {
-        it('updates values in UI', async () => {
+        it('updates the combobox value and sends out an action_changed event', async () => {
             const element = createElement('c-domain-process-bindings-filter', {
                 is: DomainProcessBindingsFilter,
             })
+            const handler = jest.fn()
+            element.addEventListener('action_changed', handler)
             document.body.appendChild(element)
 
-            const selectActionLabelBEl = element.shadowRoot.querySelector(
-                'b[data-id="selected-action-label"]'
-            )
+            const comboboxEl = element.shadowRoot.querySelector('lightning-combobox')
             // double checking it's on default value at first
-            expect(selectActionLabelBEl.textContent).toBe(POSSIBLE_ACTIONS[0].label)
+            expect(comboboxEl.value).toBe(POSSIBLE_ACTIONS[0].value)
 
-            const lightningButtonMenuEl = element.shadowRoot.querySelector('lightning-button-menu')
-            lightningButtonMenuEl.dispatchEvent(
-                new CustomEvent('select', { detail: { value: POSSIBLE_ACTIONS[1].value } })
+            comboboxEl.dispatchEvent(
+                new CustomEvent('change', { detail: { value: POSSIBLE_ACTIONS[1].value } })
             )
 
             await flushPromises()
 
-            expect(selectActionLabelBEl.textContent).toBe(POSSIBLE_ACTIONS[1].label)
+            expect(comboboxEl.value).toBe(POSSIBLE_ACTIONS[1].value)
+            expect(handler).toHaveBeenCalledTimes(1)
+            expect(handler.mock.calls[0][0].detail).toBe(POSSIBLE_ACTIONS[1].value)
         })
     })
 
@@ -101,16 +102,9 @@ describe('c-domain-process-bindings-filter', () => {
         })
         document.body.appendChild(element)
 
-        const lightningMenuItemEls = element.shadowRoot.querySelectorAll('lightning-menu-item')
-        expect(lightningMenuItemEls.length).toBe(POSSIBLE_ACTIONS.length)
-        for (let [index, lightningMenuItemEl] of lightningMenuItemEls.entries()) {
-            expect(lightningMenuItemEl.value).toBe(POSSIBLE_ACTIONS[index].value)
-            expect(lightningMenuItemEl.label).toBe(POSSIBLE_ACTIONS[index].label)
-        }
-
-        const selectActionLabelBEl = element.shadowRoot.querySelector(
-            'b[data-id="selected-action-label"]'
-        )
-        expect(selectActionLabelBEl.textContent).toBe(POSSIBLE_ACTIONS[0].label)
+        const comboboxEl = element.shadowRoot.querySelector('lightning-combobox')
+        expect(comboboxEl.variant).toBe('label-hidden')
+        expect(comboboxEl.value).toBe(POSSIBLE_ACTIONS[0].value)
+        expect(comboboxEl.options).toStrictEqual(POSSIBLE_ACTIONS)
     })
 })
