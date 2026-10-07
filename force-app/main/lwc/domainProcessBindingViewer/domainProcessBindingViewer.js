@@ -99,7 +99,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
         let title = ''
         if (this.triggerOperation.startsWith('Before')) {
             if (this.isAsync) {
-                throw Error('Impossible State Found: Before + Async')
+                throw new Error('Impossible State Found: Before + Async')
             }
             title = 'Record Before Save'
         } else if (this.triggerOperation.startsWith('After')) {
@@ -122,7 +122,7 @@ export default class DomainProcessBindingViewer extends LightningElement {
     }
 
     get isLoading() {
-        return Object.values(this._loadingElements).some((element) => element)
+        return Object.values(this._loadingElements).some(Boolean)
     }
 }
 
