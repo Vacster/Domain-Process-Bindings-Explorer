@@ -22,9 +22,13 @@
                 ><lightning-icon icon-name={iconName} data-id="binding-type-icon"></lightning-icon
             ></span>
             <span class="slds-col slds-grow-none"
-                ><a href="#" onclick={navigateToRecord}>{recordLabel}</a></span
-            >
-            <span class="slds-col slds-grow-none" role="separator">•</span>
+                ><lightning-button
+                    variant="base"
+                    label={recordLabel}
+                    onclick={navigateToRecord}
+                ></lightning-button
+            ></span>
+            <span class="slds-col slds-grow-none">•</span>
             <!-- TODO: Find nicer way to display the Order -->
             <span class="slds-col slds-grow-none"
                 >Order:&nbsp;
@@ -36,7 +40,7 @@
                 </lightning-formatted-number>
             </span>
             <template if:true={isPreventRecursive}>
-                <span class="slds-col slds-grow-none" role="separator">•</span>
+                <span class="slds-col slds-grow-none">•</span>
                 <span class="slds-col slds-grow-none"
                     ><lightning-icon
                         alternative-text="Prevents Recursive"
@@ -47,7 +51,7 @@
                 ></span>
             </template>
             <template if:true={isLogicalInverse}>
-                <span class="slds-col slds-grow-none" role="separator">•</span>
+                <span class="slds-col slds-grow-none">•</span>
                 <span class="slds-col slds-grow-none"
                     ><lightning-icon
                         alternative-text="Logical Inverse"

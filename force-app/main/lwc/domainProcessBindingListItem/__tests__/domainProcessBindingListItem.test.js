@@ -188,7 +188,7 @@ describe('c-domain-process-binding-list-item', () => {
             )
             expect(activeBadgeLabelSpanEl.textContent).toBe('Inactive')
         })
-        it('opens a link when record name clicked', async () => {
+        it('opens the record in a new tab when record name clicked', async () => {
             const element = createElement('c-domain-process-binding-list-item', {
                 is: DomainProcessBindingListItem,
             })
@@ -198,8 +198,8 @@ describe('c-domain-process-binding-list-item', () => {
             let spy = jest.spyOn(window, 'open')
             spy.mockImplementation(() => {})
 
-            const aEl = element.shadowRoot.querySelector('a')
-            aEl.click()
+            const buttonEl = element.shadowRoot.querySelector('lightning-button')
+            buttonEl.click()
 
             await flushPromises()
 
